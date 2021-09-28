@@ -1,8 +1,11 @@
-import Landing from "./Components/Landing";
+import StartPage from "./Components/StartPage";
 import SignIn from "./Components/SignIn";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ListPage from "./Components/ListPage";
+import Landing from "./Components/Landing";
 import { createGlobalStyle } from 'styled-components'
+import NewList from "./Components/NewList";
+import List from "./Components/List";
+import DemoList from "./Components/DemoList";
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -19,13 +22,22 @@ function App() {
       <Router>
         <Switch>
           <Route exact path='/'>
-            <Landing />
+            <StartPage />
           </Route>
           <Route path='/signin'>
             <SignIn />
           </Route>
-          <Route path='/listpage'>
-            <ListPage />
+          <Route path='/landing'>
+            <Landing />
+          </Route>
+          <Route path='/newlist'>
+            <NewList />
+          </Route>
+          <Route path='/list'>
+            <List />
+          </Route>
+          <Route path='/demolist'>
+            <DemoList />
           </Route>
         </Switch>
       </Router>

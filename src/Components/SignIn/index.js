@@ -8,7 +8,7 @@ const SignIn = () => {
       <form>
         <p>greta@stajlplejs.se</p>
         <p>********</p>
-        <Link to="/listpage">Logga In</Link>
+        <Link to="/landing">Logga In</Link>
         <p>Eller</p>
         <button>Sign in with Google</button>
       </form>
