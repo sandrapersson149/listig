@@ -5,4 +5,8 @@ export const FoodData = [
   }, {
     name: 'Ägg', id: 2, co2: 26, h2o: 670,
     ecoAlt: 'Krav Ägg', ecoCo2: 5, ecoH2o: 300,
-  }]
+  }, {
+    name: 'Mjölk', id: 3, co2: 26, h2o: 670,
+    ecoAlt: 'Havre Mjölk', ecoCo2: 5, ecoH2o: 300,
+  },
+]

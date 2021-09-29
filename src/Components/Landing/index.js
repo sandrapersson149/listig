@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import { LandingContainer, ListWrapper, BtnWrapper } from './LandingStyled';
-import { FoodData } from '../FoodData/data'
+// import { FoodData } from '../FoodData/data'
 
 const Landing = () => {
 
@@ -16,7 +16,7 @@ const Landing = () => {
       </ListWrapper>
       <BtnWrapper>
         <button>
-          <Link to="/newlist">Ny Lista +</Link>
+          <Link to="/list">Ny Lista +</Link>
         </button>
       </BtnWrapper>
     </LandingContainer>
