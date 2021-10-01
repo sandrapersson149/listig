@@ -16,7 +16,7 @@ const Landing = () => {
       </ListWrapper>
       <BtnWrapper>
         <button>
-          <Link to="/list">Ny Lista +</Link>
+          <Link to="/newlist">Ny Lista +</Link>
         </button>
       </BtnWrapper>
     </LandingContainer>

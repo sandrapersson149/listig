@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from 'react'
 import StartPage from "./Components/StartPage";
 import SignIn from "./Components/SignIn";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -6,6 +7,7 @@ import { createGlobalStyle } from 'styled-components'
 import NewList from "./Components/NewList";
 import List from "./Components/List";
 import DemoList from "./Components/DemoList";
+import history from './history';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -16,10 +18,18 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
+
+  const [title, setTitle] = useState('')
+  // const [allTitles, setAllTitles] = useState([{ 'Demolista': 'Demolista' },])
+
+  // useEffect(() => {
+  //   localStorage.setItem("Lists", JSON.stringify([{ 'Demolista': 'Demolista' }]));
+  // }, [])
+
   return (
     <div>
       <GlobalStyle />
-      <Router>
+      <Router history={history}>
         <Switch>
           <Route exact path='/'>
             <StartPage />
@@ -30,11 +40,12 @@ function App() {
           <Route path='/landing'>
             <Landing />
           </Route>
+
           <Route path='/newlist'>
-            <NewList />
+            <NewList title={title} setTitle={setTitle} />
           </Route>
           <Route path='/list'>
-            <List />
+            <List title={title} setTitle={setTitle} />
           </Route>
           <Route path='/demolist'>
             <DemoList />

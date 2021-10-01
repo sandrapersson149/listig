@@ -1,11 +1,14 @@
 import styled from "styled-components";
 import natureBg from '../../images/nature.png'
+import { FcGoogle } from 'react-icons/fc';
 
 export const StartPageContainer = styled.div`
 text-align: center;
-background-color:  #E5E5E5;
 background: url(${natureBg}) no-repeat;
+background-size: 500px;
+background-position: center bottom;
 height: 100vh;
+background-color: #EAEAEA;
 h3 {
   text-transform: uppercase;
   margin-top: -15px;
@@ -36,7 +39,6 @@ p {
   font-size: 14px;
   margin-bottom: 25px;
 }
-
 `
 
 export const Title = styled.h1`
@@ -72,20 +74,27 @@ a{
 }
 `
 
+export const GoogleIcon = styled(FcGoogle)`
+font-size: 25px;
+padding: 7px;
+background-color: #fff;
+`
+
 export const GoogleSignInBtn = styled.button`
+display: flex;
+flex-direction: row;
+align-items: center;
+margin: auto;
 background: #346EF1;
 border-radius: 2px;
 border: none;
-width: 180px;
+width: 195px;
 height: 50px;
-span {
-  background-color: #fff; 
-}
 a {
 font-weight: bold;
 font-size: 14px;
 color: #FFFFFF;
-padding: 10px;
+padding-left: 10px;
 text-decoration: none;
 }
 `

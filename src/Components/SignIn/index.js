@@ -1,17 +1,23 @@
 import React from 'react'
-import { SignInContainer } from './signInStyled';
+import { SignInContainer, SignInForm, SignInBtn, GoogleSignInBtn, GoogleIcon } from './signInStyled';
 import { Link } from "react-router-dom";
 
 const SignIn = () => {
   return (
     <SignInContainer id='signin'>
-      <form>
-        <p>greta@stajlplejs.se</p>
-        <p>********</p>
-        <Link to="/landing">Logga In</Link>
-        <p>Eller</p>
-        <button>Sign in with Google</button>
-      </form>
+      <h3>Sign in</h3>
+      <SignInForm>
+        <h5>greta@stajlplejs.se</h5>
+        <h5>********</h5>
+        <SignInBtn>
+          <Link to="/landing">Logga In</Link>
+        </SignInBtn>
+        <p>__________ Eller __________</p>
+        <GoogleSignInBtn>
+          <GoogleIcon />
+          <Link to="/signin">Sign in with Google</Link>
+        </GoogleSignInBtn>
+      </SignInForm>
     </SignInContainer>
   )
 }

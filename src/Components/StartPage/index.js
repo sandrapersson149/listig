@@ -1,7 +1,6 @@
 import React from 'react'
-import { StartPageContainer, BtnContainer, Title, CreateAccBtn, SignInBtn, GoogleSignInBtn } from './StartPageStyled';
+import { StartPageContainer, BtnContainer, Title, CreateAccBtn, SignInBtn, GoogleSignInBtn, GoogleIcon } from './StartPageStyled';
 import { Link } from "react-router-dom";
-import { FcGoogle } from 'react-icons/fc';
 
 export const StartPage = () => {
   return (
@@ -20,7 +19,8 @@ export const StartPage = () => {
         </p>
         <p>__________ Eller __________</p>
         <GoogleSignInBtn>
-          <Link to="/signin"><span><FcGoogle /></span>Sign in with Google</Link>
+          <GoogleIcon />
+          <Link to="/signin">Sign in with Google</Link>
         </GoogleSignInBtn>
       </BtnContainer>
 
