@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import NewList from '../NewList';
+import { AvatarWrapper, BackBtn, ListPageContainer, ListWrapper } from './ListStyled';
+import Avatar from '../../images/avatar.png'
 
-const List = ({ title, setTitle }) => {
+const List = ({ title }) => {
 
   const [lists, setLists] = useState([]);
 
@@ -15,30 +17,36 @@ const List = ({ title, setTitle }) => {
   };
 
   useEffect((lists) => {
+    // const json = JSON.stringify(lists);
     setLists(lists => [...lists, newList]);
-    const json = JSON.stringify(lists);
-    localStorage.setItem("Lists", json);
-    console.log('useeffect ran + ' + json)
+
+    localStorage.setItem("Lists", JSON.stringify(lists));
+    console.log('useeffect ran + ' + lists)
   }, [title])
 
 
   useEffect(() => {
     setLists(newList)
 
-    // console.log('lists = ' + JSON.stringify(lists))
+    console.log('rad 31' + lists)
 
   }, [])
 
   return (
-    <div>
-      <button>
+    <ListPageContainer>
+      <AvatarWrapper>
+        <img src={Avatar}></img>
+      </AvatarWrapper>
+      <BackBtn>
         <Link to="/landing">back</Link>
-      </button>
-      <h2>{title}</h2>
-      <p>Kom igång med handlingslistan genom att klicka på knappen nedan</p>
-      <h5>listan är tom</h5>
-      <button>Lägg till + </button>
-    </div>
+      </BackBtn>
+      <ListWrapper>
+        <h2>{title}</h2>
+        <p>Kom igång med handlingslistan genom att klicka på knappen nedan</p>
+        <h5>listan är tom</h5>
+        <button>Lägg till +</button>
+      </ListWrapper>
+    </ListPageContainer>
   )
 }
 

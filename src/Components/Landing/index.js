@@ -1,23 +1,38 @@
 import React from 'react'
 import { Link } from "react-router-dom";
-import { LandingContainer, ListWrapper, BtnWrapper } from './LandingStyled';
+import { LandingContainer, AvatarWrapper, LandingTitle, ListWrapper, ListIcon, OptionsIcon, BtnWrapper, NewListButton, AddIcon } from './LandingStyled';
 // import { FoodData } from '../FoodData/data'
+import Avatar from '../../images/avatar.png'
+import { FaListUl } from 'react-icons/fa'
 
 const Landing = () => {
 
 
   return (
     <LandingContainer id='landing'>
-      <h1>Gretas Listor</h1>
+      <AvatarWrapper>
+        <img src={Avatar}></img>
+      </AvatarWrapper>
+      <LandingTitle>Gretas Listor</LandingTitle>
       <ListWrapper>
         <ul>
-          <Link to="/demolist"><li>Mat till Helgen</li></Link>
+          <Link to="/demolist">
+            <li>
+              <ListIcon />
+              <span>Mat till Helgen</span>
+              <OptionsIcon />
+              <p>10</p>
+            </li>
+          </Link>
         </ul>
       </ListWrapper>
       <BtnWrapper>
-        <button>
-          <Link to="/newlist">Ny Lista +</Link>
-        </button>
+        <NewListButton>
+          <Link to="/newlist">
+            Ny Lista
+            <AddIcon />
+          </Link>
+        </NewListButton>
       </BtnWrapper>
     </LandingContainer>
   )
