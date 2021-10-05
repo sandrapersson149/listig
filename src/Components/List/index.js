@@ -16,21 +16,26 @@ const List = ({ title }) => {
     id: Date.now(),
   };
 
-  useEffect((lists) => {
-    // const json = JSON.stringify(lists);
-    setLists(lists => [...lists, newList]);
 
-    localStorage.setItem("Lists", JSON.stringify(lists));
-    console.log('useeffect ran + ' + lists)
-  }, [title])
-
+  // setLists(newSelected)
 
   useEffect(() => {
-    setLists(newList)
 
-    console.log('rad 31' + lists)
 
+    // let newSelected = Object.assign({}, newList)
+    // const json = JSON.stringify(lists);
+    // setLists(newSelected);
+    setLists(lists => [...lists, newList])
+
+    // console.log(newSelected)
+    localStorage.setItem("Lists", JSON.stringify(title));
+    console.log('useeffect ran + ' + lists)
   }, [])
+
+
+  // useEffect(() => {
+
+  // }, [])
 
   return (
     <ListPageContainer>
