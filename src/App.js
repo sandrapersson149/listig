@@ -20,6 +20,8 @@ const GlobalStyle = createGlobalStyle`
 function App() {
 
   const [title, setTitle] = useState('')
+  const [userData, setUserData] = useState()
+  const [editMode, setEditMode] = useState(false)
   // const [allTitles, setAllTitles] = useState([{ 'Demolista': 'Demolista' },])
 
   // useEffect(() => {
@@ -42,10 +44,10 @@ function App() {
           </Route>
 
           <Route path='/newlist'>
-            <NewList title={title} setTitle={setTitle} />
+            <NewList title={title} setTitle={setTitle} userData={userData} setUserData={setUserData} editMode={editMode} setEditMode={setEditMode} />
           </Route>
           <Route path='/list'>
-            <List title={title} setTitle={setTitle} />
+            <List title={title} setTitle={setTitle} userData={userData} setUserData={setUserData} editMode={editMode} setEditMode={setEditMode} />
           </Route>
           <Route path='/demolist'>
             <DemoList />

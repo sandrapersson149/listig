@@ -3,7 +3,27 @@ import { Link } from 'react-router-dom'
 import { AvatarWrapper, BackBtn, ListPageContainer, ListWrapper } from './ListStyled';
 import Avatar from '../../images/avatar.png'
 
-const List = ({ title }) => {
+const List = ({ title, setTitle, userData, setUserData, editMode, setEditMode }) => {
+
+
+  useEffect(() => {
+    try {
+      const user = window.localStorage.getItem("list")
+      console.log(user)
+      if (!user) {
+        setUserData(null)
+      } else {
+        const parsedData = JSON.parse(user)
+        setUserData(parsedData)
+        if (parsedData.items.length === 0) {
+          setEditMode(true)
+        }
+      }
+    } catch (error) {
+      console.log(error)
+      setUserData(null)
+    }
+  }, [])
 
   return (
     <ListPageContainer>
