@@ -1,26 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { NewListContainer, BackBtn, Wrapper, AbortBtn, CreateBtn } from './NewListStyled'
-import history from '../../history'
-import List from '../List';
 
-
-const NewList = ({ setTitle }) => {
-
+const NewList = ({ setTitle, setLists, }) => {
   const [input, setInput] = useState('')
 
   const handleClick = (e) => {
     e.preventDefault();
     setTitle(input)
-
-
-    // console.log('rad 32 + ' + lists)
-    // titleArr.push(lists)
-
-    // localStorage.setItem("Lists", JSON.stringify(lists));
-
+    setLists(lists => [...lists, newList])
   }
 
+  const newList = {
+    title: input,
+    id: Date.now(),
+    varor: [],
+  };
 
   return (
     <NewListContainer id='newlist'>

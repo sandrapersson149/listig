@@ -1,17 +1,25 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from "react-router-dom";
 import { LandingContainer, AvatarWrapper, LandingTitle, ListWrapper, ListIcon, OptionsIcon, BtnWrapper, NewListButton, AddIcon } from './LandingStyled';
-// import { FoodData } from '../FoodData/data'
 import Avatar from '../../images/avatar.png'
-import { FaListUl } from 'react-icons/fa'
 
-const Landing = () => {
+const Landing = ({ lists, setLists, }) => {
 
+  useEffect(() => {
+
+    const Demo = {
+      title: 'Mat till helgen',
+      id: Date.now(),
+      varor: ['pasta', 'Spenat'],
+    }
+    setLists(lists => [...lists, Demo])
+    localStorage.setItem("Lists", JSON.stringify(lists));
+  }, [])
 
   return (
     <LandingContainer id='landing'>
       <AvatarWrapper>
-        <img src={Avatar}></img>
+        <img src={Avatar} alt='Profile avatar' />
       </AvatarWrapper>
       <LandingTitle>Gretas Listor</LandingTitle>
       <ListWrapper>
