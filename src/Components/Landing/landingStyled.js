@@ -34,8 +34,8 @@ ul{
   padding: 0;
 }
 li{
+  margin: 7px 0;
   display: flex;
-  justify-content: space-evenly;
   list-style: none;
   padding: 10px;
   background-color: #E1E1E1;

@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { SignInContainer, SignInForm, SignInBtn, GoogleSignInBtn, GoogleIcon } from './signInStyled';
 import { Link } from "react-router-dom";
+import { FoodData } from '../FoodData/data';
 
-const SignIn = () => {
+const SignIn = ({ lists, setLists, }) => {
+
+  const Demo = {
+    title: 'Mat till helgen',
+    id: Date.now(),
+    varor: getFoodName(FoodData),
+  }
+
+  function getFoodName(arr) {
+    let foodItem = arr.map(item => item.name)
+    return foodItem
+  }
+
+  useEffect(() => {
+    setLists(lists => [...lists, Demo])
+    localStorage.setItem("Lists", JSON.stringify(lists));
+
+  }, [])
+
   return (
     <SignInContainer id='signin'>
       <h3>Sign in</h3>

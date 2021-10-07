@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
 function App() {
 
   const [title, setTitle] = useState('')
-  const [lists, setLists] = useState([]);
+  const [lists, setLists] = useState(JSON.parse(localStorage.getItem("Lists")) || []);
 
   return (
     <div>
@@ -31,7 +31,7 @@ function App() {
             <StartPage />
           </Route>
           <Route path='/signin'>
-            <SignIn />
+            <SignIn lists={lists} setLists={setLists} />
           </Route>
           <Route path='/landing'>
             <Landing lists={lists} setLists={setLists} />

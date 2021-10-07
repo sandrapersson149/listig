@@ -3,18 +3,15 @@ import { Link } from "react-router-dom";
 import { LandingContainer, AvatarWrapper, LandingTitle, ListWrapper, ListIcon, OptionsIcon, BtnWrapper, NewListButton, AddIcon } from './LandingStyled';
 import Avatar from '../../images/avatar.png'
 
-const Landing = ({ lists, setLists, }) => {
+const Landing = ({ lists }) => {
+
+  const DataFromLS = JSON.parse(localStorage.getItem("Lists"))
 
   useEffect(() => {
-
-    const Demo = {
-      title: 'Mat till helgen',
-      id: Date.now(),
-      varor: ['pasta', 'Spenat'],
-    }
-    setLists(lists => [...lists, Demo])
     localStorage.setItem("Lists", JSON.stringify(lists));
+
   }, [])
+
 
   return (
     <LandingContainer id='landing'>
@@ -24,14 +21,15 @@ const Landing = ({ lists, setLists, }) => {
       <LandingTitle>Gretas Listor</LandingTitle>
       <ListWrapper>
         <ul>
-          <Link to="/demolist">
-            <li>
+          {/* <Link to="/demolist"></Link> */}
+          {DataFromLS.map(item => (
+            <li key={item.id}>
               <ListIcon />
-              <span>Mat till Helgen</span>
+              <span>{item.title}</span>
               <OptionsIcon />
-              <p>10</p>
+              <p>antal</p>
             </li>
-          </Link>
+          ))}
         </ul>
       </ListWrapper>
       <BtnWrapper>

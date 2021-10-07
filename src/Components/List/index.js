@@ -4,12 +4,17 @@ import { AvatarWrapper, BackBtn, ListPageContainer, ListWrapper } from './ListSt
 import Avatar from '../../images/avatar.png'
 
 const List = ({ lists, title }) => {
-
+  localStorage.setItem("Lists", JSON.stringify(lists));
   useEffect(() => {
-    localStorage.setItem("Lists", JSON.stringify(lists));
-    const getLists = localStorage.getItem("Lists")
-    console.log(getLists)
+
+    // console.log(localStorage.getItem("Lists"))
   }, [title])
+
+  // function titleFromLS(a) {
+  //   let filterList = JSON.parse(localStorage.getItem("Lists")).filter(list => list.title === a)
+  //   return filterList.filter(item => item.title)
+  // }
+  // console.log(titleFromLS(title))
 
   return (
     <ListPageContainer>
