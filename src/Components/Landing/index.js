@@ -1,16 +1,36 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams, } from "react-router-dom"
 import { Link } from "react-router-dom";
 import { LandingContainer, AvatarWrapper, LandingTitle, ListWrapper, ListIcon, OptionsIcon, BtnWrapper, NewListButton, AddIcon } from './LandingStyled';
 import Avatar from '../../images/avatar.png'
+import history from '../../history'
 
-const Landing = ({ lists }) => {
+const Landing = ({ lists, clickedList, setClickedList }) => {
 
-  const DataFromLS = JSON.parse(localStorage.getItem("Lists"))
+  const dataFromLS = JSON.parse(localStorage.getItem("Lists"))
 
-  useEffect(() => {
-    localStorage.setItem("Lists", JSON.stringify(lists));
+  // useEffect(() => {
+  //   localStorage.setItem("Lists", JSON.stringify(lists));
 
-  }, [])
+  // }, [])
+  // console.log([...new Set(dataFromLS.title)])
+  console.log(dataFromLS)
+
+  function handleClickedList(item) {
+
+    // let clickedTitle = item;
+
+    // setClickedList(clickedTitle)
+    console.log(item.id)
+    history.push
+      ({
+        pathname: `/list/${item.id}`,
+        state:
+        {
+          item: item,
+        }
+      });
+  }
 
 
   return (
@@ -18,12 +38,11 @@ const Landing = ({ lists }) => {
       <AvatarWrapper>
         <img src={Avatar} alt='Profile avatar' />
       </AvatarWrapper>
-      <LandingTitle>Gretas Listor</LandingTitle>
+      <LandingTitle>Mina Listor</LandingTitle>
       <ListWrapper>
         <ul>
-          {/* <Link to="/demolist"></Link> */}
-          {DataFromLS.map(item => (
-            <li key={item.id}>
+          {dataFromLS.map(item => (
+            <li key={item.id} onClick={() => handleClickedList(item)}>
               <ListIcon />
               <span>{item.title}</span>
               <OptionsIcon />

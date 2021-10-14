@@ -1,20 +1,34 @@
-import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { AvatarWrapper, BackBtn, ListPageContainer, ListWrapper } from './ListStyled';
+import React, { useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { AvatarWrapper, BackBtn, ListPageContainer, Container, ItemsInList, ListWrapper } from './ListStyled';
 import Avatar from '../../images/avatar.png'
+import { FoodData } from '../FoodData/data';
 
-const List = ({ lists, title }) => {
+const List = ({ lists, clickedList, setClickedList }) => {
+
+  const [query, setQuery] = useState('')
+  const [showSearch, setShowSearch] = useState(false)
+  const [filterdItems, setFilterdItems] = useState([])
+
+  let location = useLocation()
+
   localStorage.setItem("Lists", JSON.stringify(lists));
-  useEffect(() => {
 
-    // console.log(localStorage.getItem("Lists"))
-  }, [title])
+  let { title, varor } = location.state.item;
 
-  // function titleFromLS(a) {
-  //   let filterList = JSON.parse(localStorage.getItem("Lists")).filter(list => list.title === a)
-  //   return filterList.filter(item => item.title)
-  // }
-  // console.log(titleFromLS(title))
+  const handleFilter = (e) => {
+    const searchInput = e.target.value;
+    const newFilter = FoodData.filter((value) => {
+      return value.name.toLowerCase().includes(searchInput.toLowerCase())
+    });
+
+    if (searchInput === "") {
+      setFilterdItems([])
+    } else {
+      setFilterdItems(newFilter)
+    }
+
+  }
 
   return (
     <ListPageContainer>
@@ -27,8 +41,63 @@ const List = ({ lists, title }) => {
       <ListWrapper>
         <h2>{title}</h2>
         <p>Kom igång med handlingslistan genom att klicka på knappen nedan</p>
-        <h5>listan är tom</h5>
-        <button>Lägg till +</button>
+
+        <Container>
+          {showSearch && (
+            <div>
+              <input placeholder='skriv in namn på varan' onChange={handleFilter} />
+              {
+                filterdItems.length != 0 && (
+
+                  filterdItems.map((item, index) => (
+                    <div className={item.id} key={index}>
+                      <p>{item.name}</p>
+                    </div>
+                  ))
+                )
+              }
+            </div>
+          )
+          }
+          <ul>
+            {varor ? varor.map((vara) => (<ItemsInList key={vara.id}>{vara}</ItemsInList>)) : <li>Listan är tom</li>}
+          </ul>
+
+        </Container>
+
+        {/* <Container>
+          {showSearch && (
+            <div>
+              <input placeholder='skriv in namn på varan' onChange={event => setQuery(event.target.value)} />
+              {
+                // filterdItems.length != 0 && (
+                FoodData
+                  .filter(item => {
+                    if (query === '') {
+                      return item;
+                    } else if (item.name.toLowerCase().includes(query.toLowerCase())) {
+                      return item
+                    }
+                  })
+
+                  .map((item, index) => (
+                    <div key={index}>
+                      <p>{item.name}</p>
+                    </div>
+                  ))
+                // )
+              }
+            </div>
+          )
+          }
+          <ul>
+            {varor ? varor.map((vara) => (<ItemsInList key={vara.id}>{vara}</ItemsInList>)) : <li><p>Listan är tom</p></li>}
+          </ul>
+
+        </Container> */}
+
+        <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
+
       </ListWrapper>
     </ListPageContainer>
   )

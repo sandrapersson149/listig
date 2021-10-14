@@ -5,19 +5,7 @@ import { FoodData } from '../FoodData/data';
 
 const SignIn = ({ lists, setLists, }) => {
 
-  const Demo = {
-    title: 'Mat till helgen',
-    id: Date.now(),
-    varor: getFoodName(FoodData),
-  }
-
-  function getFoodName(arr) {
-    let foodItem = arr.map(item => item.name)
-    return foodItem
-  }
-
   useEffect(() => {
-    setLists(lists => [...lists, Demo])
     localStorage.setItem("Lists", JSON.stringify(lists));
 
   }, [])

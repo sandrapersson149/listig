@@ -1,21 +1,45 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { NewListContainer, BackBtn, Wrapper, AbortBtn, CreateBtn } from './NewListStyled'
+import history from '../../history'
 
-const NewList = ({ setTitle, setLists, }) => {
+const NewList = ({ setTitle, lists, setLists, clickedList, setClickedList }) => {
   const [input, setInput] = useState('')
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    setTitle(input)
+
+
+  const handleClick = (newtitle) => {
+    // e.preventDefault();
+    // setClickedList(input)
+    // console.log(e)
+    const newList = {
+      title: input,
+      id: Date.now(),
+      varor: [],
+    };
     setLists(lists => [...lists, newList])
+    localStorage.setItem("Lists", JSON.stringify(lists));
+
+
+    console.log(newList)
+
+    history.push
+      ({
+        pathname: `/list/${newtitle}`,
+        state:
+        {
+          item: newtitle,
+        }
+      });
   }
 
-  const newList = {
-    title: input,
-    id: Date.now(),
-    varor: [],
-  };
+
+
+  // useEffect(() => {
+
+
+  // }, [])
+
 
   return (
     <NewListContainer id='newlist'>
@@ -30,7 +54,7 @@ const NewList = ({ setTitle, setLists, }) => {
           <AbortBtn>
             <Link to="/landing">avbryt</Link>
           </AbortBtn>
-          <CreateBtn type='submit' onClick={handleClick}>
+          <CreateBtn type='submit' onClick={() => handleClick(input)}>
             <Link to="/list">Skapa</Link>
           </CreateBtn>
         </form>
