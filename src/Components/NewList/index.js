@@ -35,12 +35,6 @@ const NewList = ({ setTitle, lists, setLists, clickedList, setClickedList }) => 
 
 
 
-  // useEffect(() => {
-
-
-  // }, [])
-
-
   return (
     <NewListContainer id='newlist'>
       <BackBtn>

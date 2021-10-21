@@ -35,6 +35,7 @@ function App() {
   }
 
   useEffect(() => {
+    // setLists([... new Set(lists), demo])
     setLists(lists => [...lists, demo])
     // localStorage.setItem("Lists", JSON.stringify(lists));
 
