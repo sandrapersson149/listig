@@ -1,27 +1,25 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, } from "react-router-dom"
+import React from 'react'
 import { Link } from "react-router-dom";
-import { LandingContainer, AvatarWrapper, LandingTitle, ListWrapper, ListIcon, OptionsIcon, BtnWrapper, NewListButton, AddIcon } from './LandingStyled';
-import Avatar from '../../images/avatar.png'
 import history from '../../history'
+import Avatar from '../../images/avatar.png'
+import {
+  LandingContainer,
+  AvatarWrapper,
+  LandingTitle,
+  ListWrapper,
+  ListIcon,
+  OptionsIcon,
+  BtnWrapper,
+  NewListButton,
+  AddIcon
+} from './LandingStyled';
 
-const Landing = ({ lists, clickedList, setClickedList }) => {
+const Landing = () => {
 
   const dataFromLS = JSON.parse(localStorage.getItem("Lists"))
 
-  // useEffect(() => {
-  //   localStorage.setItem("Lists", JSON.stringify(lists));
-
-  // }, [])
-  // console.log([...new Set(dataFromLS.title)])
-  console.log(dataFromLS)
-
   function handleClickedList(item) {
 
-    // let clickedTitle = item;
-
-    // setClickedList(clickedTitle)
-    console.log(item.id)
     history.push
       ({
         pathname: `/list/${item.id}`,
@@ -31,7 +29,6 @@ const Landing = ({ lists, clickedList, setClickedList }) => {
         }
       });
   }
-
 
   return (
     <LandingContainer id='landing'>
@@ -46,7 +43,7 @@ const Landing = ({ lists, clickedList, setClickedList }) => {
               <ListIcon />
               <span>{item.title}</span>
               <OptionsIcon />
-              <p>antal</p>
+              {/* <p>antal</p> */}
             </li>
           ))}
         </ul>

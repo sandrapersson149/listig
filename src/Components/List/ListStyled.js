@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FiCircle } from 'react-icons/fi'
+import { FiCircle, FiCheckCircle } from 'react-icons/fi'
 
 export const AvatarWrapper = styled.div`
 display: flex;
@@ -79,9 +79,20 @@ border-radius: 10px;
 margin: 10px;
 padding: 15px;
 font-size: 17px;
+.listItem {
+color: green;
+}
+.complete {
+  text-decoration: overline;
+}
 `
 export const UncheckedIcon = styled(FiCircle)`
 padding-right: 10px;
+`
+
+export const CheckedIcon = styled(FiCheckCircle)`
+padding-right: 10px;
+
 `
 
 export const ListPageContainer = styled.div`

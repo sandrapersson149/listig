@@ -2,8 +2,18 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Avatar from '../../images/avatar.png'
 import Checklist from '../../images/checklist.png'
-
-import { BytaVaraContainer, TopWrapper, BackBtn, AvatarWrapper, AltContainer, HeadWrapper, AlternativWrapper, ProcentContainer, BtnWrapper, ImgWrapper } from './BytaVaraStyled'
+import {
+  BytaVaraContainer,
+  TopWrapper,
+  BackBtn,
+  AvatarWrapper,
+  AltContainer,
+  HeadWrapper,
+  AlternativWrapper,
+  ProcentContainer,
+  BtnWrapper,
+  ImgWrapper
+} from './BytaVaraStyled'
 
 const bytaVara = () => {
   return (

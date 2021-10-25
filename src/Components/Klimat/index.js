@@ -1,5 +1,14 @@
 import React from 'react'
-import { KlimatContainer, TopWrapper, AvatarWrapper, BackBtn, HeadWrapper, KlimatWrapper, StatsWrapper, BtnWrapper } from './KlimatStyled'
+import {
+  KlimatContainer,
+  TopWrapper,
+  AvatarWrapper,
+  BackBtn,
+  HeadWrapper,
+  KlimatWrapper,
+  StatsWrapper,
+  BtnWrapper
+} from './KlimatStyled'
 import { Link } from 'react-router-dom'
 import Avatar from '../../images/avatar.png'
 

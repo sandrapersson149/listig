@@ -1,13 +1,17 @@
 import React, { useEffect } from 'react'
-import { SignInContainer, SignInForm, SignInBtn, GoogleSignInBtn, GoogleIcon } from './signInStyled';
 import { Link } from "react-router-dom";
-import { FoodData } from '../FoodData/data';
+import {
+  SignInContainer,
+  SignInForm,
+  SignInBtn,
+  GoogleSignInBtn,
+  GoogleIcon
+} from './signInStyled';
 
-const SignIn = ({ lists, setLists, }) => {
+const SignIn = ({ lists }) => {
 
   useEffect(() => {
     localStorage.setItem("Lists", JSON.stringify(lists));
-
   }, [])
 
   return (

@@ -1,8 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { AvatarWrapper, BackBtn, ListPageContainer, Container, SearchWrapper, SearchAndAdd, SearchInput, SearchResultContainer, ItemsInList, UncheckedIcon, ListWrapper } from './ListStyled';
 import Avatar from '../../images/avatar.png'
 import { FoodData } from '../FoodData/data';
+import {
+  AvatarWrapper,
+  BackBtn,
+  ListPageContainer,
+  Container,
+  SearchWrapper,
+  SearchInput,
+  SearchResultContainer,
+  ItemsInList,
+  UncheckedIcon,
+  CheckedIcon,
+  ListWrapper
+} from './ListStyled';
 
 const List = ({ lists, setLists }) => {
 
@@ -15,7 +27,16 @@ const List = ({ lists, setLists }) => {
   localStorage.setItem("Lists", JSON.stringify(lists));
 
   let { title, varor, id } = location.state.item;
+  const allLists = JSON.parse(localStorage.getItem("Lists"));
 
+  const handleChangeCheckmark = (id) => {
+    // let checkedItems = varor.map(item => {
+    //   if (item => item.id === id) {
+    //     item.isChecked = !item.isChecked
+    //   } return item
+    // })
+    setChecked(!checked)
+  }
 
   const handleFilter = (e) => {
     const searchInput = e.target.value;
@@ -28,15 +49,8 @@ const List = ({ lists, setLists }) => {
     } else {
       setFilterdItems(newFilter)
     }
-
   }
 
-  const allLists = JSON.parse(localStorage.getItem("Lists"));
-
-  let activList = allLists.find(list => list.title === title)
-  // console.log(activList.varor)
-  // let activListVaror = activList.varor
-  // console.log(lists)
   // ta in valet från sökning och spara det
   // läs av LS och ta ut activ list id
   // ta bort den activa listan från LS och ersätt med nytt object - med valda varor
@@ -44,32 +58,27 @@ const List = ({ lists, setLists }) => {
   // listorna sparas i useState Lists - kanske behöver spara där först, uppdatera den actuella listan
   // att köra en push till statet Lists med den uppdaterade listan/activa listan
 
+  // problemet - listans varor kommer från location statet
+  // den läses av när man kommer in på sidan. 
+  // Läs av aktiv lista och visa alla varor
+  // kanske - gör en if statment - if location state varor är null - kolla efter nått annat
+
+  // det blir problem med att när man gör en ny lista kommer man in på list sidan direkt
+  // genom att trycka på en lista på landing används location history push - det funkar inte med ny lista
+
+
 
   const handleClickedItem = (item) => {
 
     setSearchedWord([...searchedWord, item.name])
-    console.log(searchedWord)
     const updatedList = {
       title: title,
       id: id,
       varor: searchedWord,
     };
 
-    console.log('den uppdaterade listan ' + JSON.stringify(updatedList))
     removeActivListFromLS(id)
     addUpdatesListToLS(updatedList)
-
-    // if (activList.varor === []) {
-    //   activList.varor += [item.name]
-    //   console.log(activList)
-    // } else {
-    //   allLists.push({
-    //     title,
-    //     id,
-    //     varor: []
-    //   })
-    // }
-
   }
 
   function removeActivListFromLS(listID) {
@@ -82,6 +91,11 @@ const List = ({ lists, setLists }) => {
     setLists(lists => [...lists, list])
     localStorage.setItem("Lists", JSON.stringify(lists));
   }
+
+  useEffect(() => {
+
+
+  }, [])
 
   return (
     <ListPageContainer>
@@ -97,12 +111,10 @@ const List = ({ lists, setLists }) => {
         <Container>
           {showSearch && (
             <SearchWrapper>
-              <SearchAndAdd>
-                <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
-                <input type="submit" value="Lägg till" />
-              </SearchAndAdd>
+              <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
+
               {
-                filterdItems.length != 0 && (
+                filterdItems.length !== 0 && (
 
                   filterdItems.map((item, index) => (
                     <SearchResultContainer className={item.id} key={index} onClick={() => handleClickedItem(item)}>
@@ -116,12 +128,21 @@ const List = ({ lists, setLists }) => {
           )
           }
           <ul>
-            {varor ? varor.map((vara) => (<ItemsInList key={vara.id}>{vara}</ItemsInList>)) : (<h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>)}
+            {varor ?
+              varor.map((vara, index) => (
+                <ItemsInList key={index}>
+                  {checked ? (
+                    <CheckedIcon className='listItem complete' onClick={() => handleChangeCheckmark(vara.id)} />
+                  ) : (
+                    <UncheckedIcon className='listItem' onClick={() => handleChangeCheckmark(vara.id)} />
+                  )}
+                  {vara}
+                </ItemsInList>
+              )) : (
+                <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
+              )}
           </ul>
         </Container>
-
-        {/* <UncheckedIcon onClick={() => setChecked(true)} /> */}
-
         <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
 
       </ListWrapper>

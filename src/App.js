@@ -19,6 +19,8 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
+
+  const [input, setInput] = useState('')
   const [title, setTitle] = useState('')
   const [lists, setLists] = useState(JSON.parse(localStorage.getItem("Lists")) || []);
   const [clickedList, setClickedList] = useState()
@@ -35,10 +37,7 @@ function App() {
   }
 
   useEffect(() => {
-    // setLists([... new Set(lists), demo])
     setLists(lists => [...lists, demo])
-    // localStorage.setItem("Lists", JSON.stringify(lists));
-
   }, [])
 
 
@@ -58,11 +57,10 @@ function App() {
             <Landing lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
           </Route>
           <Route path='/newlist'>
-            <NewList title={title} setTitle={setTitle} lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
+            <NewList input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
           </Route>
-          {/* <Route path='/list'> */}
           <Route exact path='/list/:title'>
-            <List title={title} setTitle={setTitle} lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
+            <List input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
           </Route>
           <Route path='/klimat'>
             <Klimat />

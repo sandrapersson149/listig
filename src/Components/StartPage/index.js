@@ -1,11 +1,16 @@
-import React, { useEffect } from 'react'
-import { StartPageContainer, BtnContainer, Title, CreateAccBtn, SignInBtn, GoogleSignInBtn, GoogleIcon } from './StartPageStyled';
+import React from 'react'
 import { Link } from "react-router-dom";
+import {
+  StartPageContainer,
+  BtnContainer,
+  Title,
+  CreateAccBtn,
+  SignInBtn,
+  GoogleSignInBtn,
+  GoogleIcon
+} from './StartPageStyled';
 
-
-export const StartPage = ({ lists, setLists, }) => {
-
-
+export const StartPage = () => {
 
   return (
     <StartPageContainer>
