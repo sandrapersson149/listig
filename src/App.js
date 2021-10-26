@@ -23,7 +23,6 @@ function App() {
   const [input, setInput] = useState('')
   const [title, setTitle] = useState('')
   const [lists, setLists] = useState(JSON.parse(localStorage.getItem("Lists")) || []);
-  const [clickedList, setClickedList] = useState()
 
   const demo = {
     title: 'Mat till helgen',
@@ -37,10 +36,14 @@ function App() {
   }
 
   useEffect(() => {
-    setLists(lists => [...lists, demo])
+    if (lists.find(list => list.title == 'Mat till helgen')) {
+
+      console.log('found')
+    } else {
+      setLists(lists => [...lists, demo])
+    }
+
   }, [])
-
-
 
   return (
     <div>
@@ -54,13 +57,13 @@ function App() {
             <SignIn lists={lists} setLists={setLists} />
           </Route>
           <Route path='/landing'>
-            <Landing lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
+            <Landing lists={lists} setLists={setLists} />
           </Route>
           <Route path='/newlist'>
-            <NewList input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
+            <NewList input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} />
           </Route>
           <Route exact path='/list/:title'>
-            <List input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} clickedList={clickedList} setClickedList={setClickedList} />
+            <List input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} />
           </Route>
           <Route path='/klimat'>
             <Klimat />

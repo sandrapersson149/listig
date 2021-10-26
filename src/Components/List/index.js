@@ -24,6 +24,8 @@ import {
 } from './ListStyled';
 
 const List = ({ lists, setLists }) => {
+
+
   let location = useLocation()
   let { title, varor, id } = location.state.item;
   localStorage.setItem("Lists", JSON.stringify(lists));
@@ -132,14 +134,10 @@ const List = ({ lists, setLists }) => {
           <ul>
             {varor ?
               varor.map((vara, index) => (
-                <div onClick={() => handleExpandedItem(vara.id)}>
-                  {expandItem ? <ItemsInList key={index}>
-                    <span onClick={() => handleChangeCheckmark(index)}>
-                      {checked === index ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
-                    </span>
-                    {vara} <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><span><InfoIcon /></span>
-                  </ItemsInList>
-                    :
+                <div onClick={() => handleExpandedItem(index)}>
+
+                  {expandItem ?
+
                     <ExpandedItemsInList key={index}>
                       <span onClick={() => handleChangeCheckmark(index)}>
                         {checked === index ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
@@ -149,7 +147,16 @@ const List = ({ lists, setLists }) => {
                         <p onClick={() => goToKlimat(vara)}>Klimatpåverkan</p>
                         <p>Alternativ på hållbara varor</p>
                       </InfoContainer>
-                    </ExpandedItemsInList>}
+                    </ExpandedItemsInList> :
+                    <ItemsInList key={index}>
+                      <span onClick={() => handleChangeCheckmark(index)}>
+                        {checked === index ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
+                      </span>
+                      {vara} <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><span><InfoIcon /></span>
+                    </ItemsInList>
+
+                  }
+
                 </div>
               )) : (
                 <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>

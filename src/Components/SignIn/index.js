@@ -12,6 +12,8 @@ const SignIn = ({ lists }) => {
 
   useEffect(() => {
     localStorage.setItem("Lists", JSON.stringify(lists));
+
+
   }, [])
 
   return (
