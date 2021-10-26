@@ -1,4 +1,6 @@
 import React from 'react'
+import { useLocation } from 'react-router-dom'
+import history from '../../history'
 import {
   KlimatContainer,
   TopWrapper,
@@ -9,10 +11,28 @@ import {
   StatsWrapper,
   BtnWrapper
 } from './KlimatStyled'
-import { Link } from 'react-router-dom'
 import Avatar from '../../images/avatar.png'
 
-const klimat = () => {
+const Klimat = () => {
+
+  let location = useLocation()
+  let vara = location.state.item;
+
+
+  const goToAlternativ = (item) => {
+
+    history.push
+      ({
+        pathname: `/bytavara/${item}`,
+        state:
+        {
+          item: item,
+        }
+      });
+
+  }
+
+
   return (
     <KlimatContainer>
 
@@ -24,7 +44,7 @@ const klimat = () => {
       </TopWrapper>
 
       <HeadWrapper>
-        <h1>Nötfärs</h1>
+        <h1>{vara}</h1>
         <p>
           Nötkött är det
           köttslag som har högst klimatpåverkan eftersom djuren släpper
@@ -48,11 +68,11 @@ const klimat = () => {
       </StatsWrapper>
 
       <BtnWrapper>
-        <button><Link to="/bytavara">Se Alternativa Varor</Link></button>
+        <button onClick={() => goToAlternativ(vara)}>Se Alternativa Varor</button>
       </BtnWrapper>
 
     </KlimatContainer>
   )
 }
 
-export default klimat
+export default Klimat

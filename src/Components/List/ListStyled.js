@@ -1,5 +1,7 @@
 import styled from "styled-components";
-import { FiCircle, FiCheckCircle } from 'react-icons/fi'
+import { FiCircle, FiCheckCircle, FiInfo } from 'react-icons/fi'
+import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi'
+
 
 export const AvatarWrapper = styled.div`
 display: flex;
@@ -72,6 +74,7 @@ p {
 
 export const ItemsInList = styled.li`
 display: flex;
+justify-content: space-between;
 list-style: none;
 background-color: #E1E1E1;
 filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
@@ -79,13 +82,27 @@ border-radius: 10px;
 margin: 10px;
 padding: 15px;
 font-size: 17px;
-.listItem {
-color: green;
-}
 .complete {
   text-decoration: overline;
 }
 `
+
+export const ExpandedItemsInList = styled.li`
+display: flex;
+justify-content: space-between;
+height: 100px;
+list-style: none;
+background-color: #E1E1E1;
+filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+border-radius: 10px;
+margin: 10px;
+padding: 15px;
+font-size: 17px;
+`
+export const PlusMinusContainer = styled.div`
+margin:0 10px;
+`
+
 export const UncheckedIcon = styled(FiCircle)`
 padding-right: 10px;
 `
@@ -93,6 +110,23 @@ padding-right: 10px;
 export const CheckedIcon = styled(FiCheckCircle)`
 padding-right: 10px;
 
+`
+
+export const MinusIcon = styled(HiMinusCircle)`
+padding-right: 10px;
+`
+
+export const PlusIcon = styled(HiPlusCircle)`
+padding-right: 10px;
+`
+
+export const InfoIcon = styled(FiInfo)`
+padding-right: 10px;
+`
+export const InfoContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+/* flex-direction: row; */
 `
 
 export const ListPageContainer = styled.div`

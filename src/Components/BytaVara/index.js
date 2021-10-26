@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import Avatar from '../../images/avatar.png'
 import Checklist from '../../images/checklist.png'
 import {
@@ -15,7 +15,11 @@ import {
   ImgWrapper
 } from './BytaVaraStyled'
 
-const bytaVara = () => {
+const BytaVara = () => {
+
+  let location = useLocation()
+  let vara = location.state.item;
+
   return (
     <BytaVaraContainer>
 
@@ -27,11 +31,11 @@ const bytaVara = () => {
       </TopWrapper>
 
       <HeadWrapper>
-        <h1>Nötfärs</h1>
+        <h1>{vara}</h1>
       </HeadWrapper>
 
       <AlternativWrapper>
-        <h3>Alternativ till Nötfärs</h3>
+        <h3>Alternativ till {vara}</h3>
         <h4>Quorn</h4>
         <AltContainer>
 
@@ -69,4 +73,4 @@ const bytaVara = () => {
   )
 }
 
-export default bytaVara
+export default BytaVara;
