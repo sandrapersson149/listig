@@ -1,5 +1,6 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
+import history from '../../history'
 import Avatar from '../../images/avatar.png'
 import Checklist from '../../images/checklist.png'
 import {
@@ -18,24 +19,37 @@ import {
 const BytaVara = () => {
 
   let location = useLocation()
-  let vara = location.state.item;
+  let {
+    name,
+    hallbarhet,
+    co2,
+    h2o,
+    ecoAlt,
+    ecoHallbarhet,
+    ecoCo2,
+    ecoH2o
+  } = location.state.item;
+
+  function handleGoback() {
+    window.history.back()
+  }
 
   return (
     <BytaVaraContainer>
 
       <TopWrapper>
-        <BackBtn><Link to='/klimat'>Back</Link></BackBtn>
+        <BackBtn onClick={handleGoback}>Back</BackBtn>
         <AvatarWrapper>
           <img src={Avatar} alt='Profile avatar' />
         </AvatarWrapper>
       </TopWrapper>
 
       <HeadWrapper>
-        <h1>{vara}</h1>
+        <h1>{name}</h1>
       </HeadWrapper>
 
       <AlternativWrapper>
-        <h3>Alternativ till {vara}</h3>
+        <h3>Alternativ till {name}</h3>
         <h4>Quorn</h4>
         <AltContainer>
 

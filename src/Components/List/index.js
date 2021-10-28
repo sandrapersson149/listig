@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import history from '../../history'
 import Avatar from '../../images/avatar.png'
 import { FoodData } from '../FoodData/data';
@@ -37,6 +37,10 @@ const List = ({ lists, setLists }) => {
   const [expandItem, setExpandItem] = useState(false)
 
   const allLists = JSON.parse(localStorage.getItem("Lists"));
+
+  function handleGoback() {
+    window.history.back()
+  }
 
   const handleChangeCheckmark = (index) => {
     if (checked === index) {
@@ -87,12 +91,13 @@ const List = ({ lists, setLists }) => {
 
   const goToKlimat = (vara) => {
 
+    const itemData = FoodData.find(item => item.name === vara)
     history.push
       ({
-        pathname: `/klimat/${vara}`,
+        pathname: `/klimat/${itemData.name}`,
         state:
         {
-          item: vara,
+          item: itemData,
         }
       });
 
@@ -106,9 +111,7 @@ const List = ({ lists, setLists }) => {
       <AvatarWrapper>
         <img src={Avatar} alt='Profile avatar'></img>
       </AvatarWrapper>
-      <BackBtn>
-        <Link to="/landing">back</Link>
-      </BackBtn>
+      <BackBtn onClick={handleGoback}>back</BackBtn>
       <ListWrapper>
         <h2>{title}</h2>
 

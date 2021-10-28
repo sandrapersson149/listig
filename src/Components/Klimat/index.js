@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import history from '../../history'
+import { FoodData } from '../FoodData/data';
 import {
   KlimatContainer,
   TopWrapper,
@@ -16,17 +17,23 @@ import Avatar from '../../images/avatar.png'
 const Klimat = () => {
 
   let location = useLocation()
-  let vara = location.state.item;
+  let { name, hallbarhet, co2, h2o } = location.state.item;
 
+  console.log(name)
 
-  const goToAlternativ = (item) => {
+  function handleGoback() {
+    window.history.back()
+  }
 
+  const goToAlternativ = (vara) => {
+
+    const itemData = FoodData.find(item => item.name === vara)
     history.push
       ({
-        pathname: `/bytavara/${item}`,
+        pathname: `/bytavara/${itemData.name}`,
         state:
         {
-          item: item,
+          item: itemData,
         }
       });
 
@@ -37,14 +44,14 @@ const Klimat = () => {
     <KlimatContainer>
 
       <TopWrapper>
-        <BackBtn>Back</BackBtn>
+        <BackBtn onClick={handleGoback}>Back</BackBtn>
         <AvatarWrapper>
           <img src={Avatar} alt='Profile avatar' />
         </AvatarWrapper>
       </TopWrapper>
 
       <HeadWrapper>
-        <h1>{vara}</h1>
+        <h1>{name}</h1>
         <p>
           Nötkött är det
           köttslag som har högst klimatpåverkan eftersom djuren släpper
@@ -56,19 +63,19 @@ const Klimat = () => {
       </HeadWrapper>
 
       <KlimatWrapper>
-        <h4>8<span>%</span></h4>
+        <h4>{hallbarhet}<span>%</span></h4>
         <h5>hållbarhet</h5>
       </KlimatWrapper>
 
       <StatsWrapper>
         <h5>CO2 utsläpp</h5>
-        <p>26 kg</p>
+        <p>{co2} kg</p>
         <h5>Vattenförbrukning</h5>
-        <p>6991 L</p>
+        <p>{h2o} L</p>
       </StatsWrapper>
 
       <BtnWrapper>
-        <button onClick={() => goToAlternativ(vara)}>Se Alternativa Varor</button>
+        <button onClick={() => goToAlternativ(name)}>Se Alternativa Varor</button>
       </BtnWrapper>
 
     </KlimatContainer>
