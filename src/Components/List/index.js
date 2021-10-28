@@ -1,3 +1,4 @@
+import { getNodeText } from '@testing-library/react';
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import history from '../../history'
@@ -20,7 +21,11 @@ import {
   MinusIcon,
   PlusIcon,
   InfoIcon,
-  InfoContainer
+  InfoContainer,
+  BtnContainer,
+  ExpandedDiv,
+  KvittoContainer,
+  ChangesText
 } from './ListStyled';
 
 const List = ({ lists, setLists }) => {
@@ -37,6 +42,32 @@ const List = ({ lists, setLists }) => {
   const [expandItem, setExpandItem] = useState(false)
 
   const allLists = JSON.parse(localStorage.getItem("Lists"));
+
+  let listOfVaror = [];
+
+  const listAllItems = (varor) => {
+
+    for (let i = 0; i < varor.length; i++) {
+      const found = FoodData.find(item => item.name === varor[i])
+      listOfVaror.push(found)
+    }
+  }
+  listAllItems(varor)
+  const getHallbarhet = listOfVaror.map(item => item.hallbarhet)
+
+  const getBackgroundColor = (arr) => {
+
+    let color;
+    if (arr.find(num => num >= 1 && num < 20)) {
+      color = 'red';
+    } else if (arr.find(num => num >= 20 && num < 80)) {
+      color = '#EDE641';
+    } else if (arr.find(num => num >= 80)) {
+      color = '#26AE60';
+    }
+    return color;
+  };
+
 
   function handleGoback() {
     window.history.back()
@@ -84,8 +115,10 @@ const List = ({ lists, setLists }) => {
 
   const handleExpandedItem = (id) => {
     if (expandItem === id) {
+      console.log('true')
       return setExpandItem(true)
     }
+    console.log('false')
     setExpandItem(id)
   }
 
@@ -136,36 +169,42 @@ const List = ({ lists, setLists }) => {
           }
           <ul>
             {varor ?
-              varor.map((vara, index) => (
-                <div onClick={() => handleExpandedItem(index)}>
+              listOfVaror.map((vara, index) => (
+                <div onClick={() => handleExpandedItem(vara.id)}>
 
-                  {expandItem ?
-
+                  {expandItem === vara.id ?
                     <ExpandedItemsInList key={index}>
-                      <span onClick={() => handleChangeCheckmark(index)}>
-                        {checked === index ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
-                      </span>
-                      {vara} <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><span><InfoIcon /></span>
+                      <ExpandedDiv>
+                        <span onClick={() => handleChangeCheckmark(vara.id)}>
+                          {checked === vara.id ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
+                        </span><h4>{vara.name}</h4>
+                        <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
+                      </ExpandedDiv>
                       <InfoContainer>
-                        <p onClick={() => goToKlimat(vara)}>Klimatpåverkan</p>
-                        <p>Alternativ på hållbara varor</p>
+                        <h3 onClick={() => goToKlimat(vara.name)}>Klimatpåverkan</h3>
+                        <h3>Alternativ på hållbara varor</h3>
                       </InfoContainer>
-                    </ExpandedItemsInList> :
-                    <ItemsInList key={index}>
-                      <span onClick={() => handleChangeCheckmark(index)}>
-                        {checked === index ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
-                      </span>
-                      {vara} <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><span><InfoIcon /></span>
+                    </ExpandedItemsInList>
+                    :
+                    <ItemsInList key={vara.id}>
+                      <span onClick={() => handleChangeCheckmark(vara.id)}>
+                        {checked === vara.id ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
+                      </span><h4>{vara.name}</h4>
+                      <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
                     </ItemsInList>
-
                   }
-
-                </div>
-              )) : (
-                <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
-              )}
+                </div>))
+              :
+              <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
+            }
           </ul>
         </Container>
+
+        <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }}>
+          <h1>Klimatkvitto</h1>
+          <ChangesText>Finns förbättringar</ChangesText>
+        </KvittoContainer>
+
         <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
 
       </ListWrapper>
@@ -174,18 +213,3 @@ const List = ({ lists, setLists }) => {
 }
 
 export default List;
-
-// ta in valet från sökning och spara det
-  // läs av LS och ta ut activ list id
-  // ta bort den activa listan från LS och ersätt med nytt object - med valda varor
-  // kör en filter på alla items i LS och ta bara med dom som inte är den activa listan
-  // listorna sparas i useState Lists - kanske behöver spara där först, uppdatera den actuella listan
-  // att köra en push till statet Lists med den uppdaterade listan/activa listan
-
-  // problemet - listans varor kommer från location statet
-  // den läses av när man kommer in på sidan. 
-  // Läs av aktiv lista och visa alla varor
-  // kanske - gör en if statment - if location state varor är null - kolla efter nått annat
-
-  // det blir problem med att när man gör en ny lista kommer man in på list sidan direkt
-  // genom att trycka på en lista på landing används location history push - det funkar inte med ny lista

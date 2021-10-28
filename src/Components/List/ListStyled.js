@@ -79,9 +79,16 @@ list-style: none;
 background-color: #E1E1E1;
 filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 border-radius: 10px;
-margin: 10px;
-padding: 15px;
-font-size: 17px;
+margin: 5px;
+
+h4 {
+width: 100px;
+font-size: 16px;
+text-align: left;
+margin: 0;
+padding-top: 10px;
+}
+
 .complete {
   text-decoration: overline;
 }
@@ -89,44 +96,83 @@ font-size: 17px;
 
 export const ExpandedItemsInList = styled.li`
 display: flex;
-justify-content: space-between;
-height: 100px;
+flex-direction: column;
+height: 120px;
 list-style: none;
 background-color: #E1E1E1;
 filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 border-radius: 10px;
-margin: 10px;
-padding: 15px;
-font-size: 17px;
+margin: 5px;
 `
-export const PlusMinusContainer = styled.div`
-margin:0 10px;
+
+export const ExpandedDiv = styled.div`
+display: flex;
+justify-content: space-between;
+h4 {
+  width: 100px;
+  font-size: 16px;
+  text-align: left;
+  margin: 0;
+  padding-top: 10px;
+}
 `
 
 export const UncheckedIcon = styled(FiCircle)`
-padding-right: 10px;
+padding: 10px;
+width: 20px;
+height: 20px;
 `
 
 export const CheckedIcon = styled(FiCheckCircle)`
-padding-right: 10px;
+padding: 10px;
+width: 20px;
+height: 20px;
+`
 
+export const BtnContainer = styled.div`
+display: flex;
+`
+
+export const PlusMinusContainer = styled.div`
+width: 100px;
+padding-top: 10px;
+font-size: 18px;
+color:#5F5F5F;
 `
 
 export const MinusIcon = styled(HiMinusCircle)`
-padding-right: 10px;
+padding-right: 5px;
+width: 18px;
+height: 18px;
+color: #5F5F5F;
 `
 
 export const PlusIcon = styled(HiPlusCircle)`
-padding-right: 10px;
+padding-left: 5px;
+width: 18px;
+height: 18px;
+color: #5F5F5F;
 `
 
 export const InfoIcon = styled(FiInfo)`
+padding-top: 10px;
 padding-right: 10px;
+width: 22px;
+height: 22px;
+/* border: 2px solid green; */
+color: #828282;
 `
 export const InfoContainer = styled.div`
 display: flex;
-flex-wrap: wrap;
-/* flex-direction: row; */
+flex-direction: column;
+h3 {
+  padding: 5px;
+  padding-left: 40px;
+  margin: 0;
+  font-size: 15px;
+  font-weight: 300;
+  text-align: left;
+}
 `
 
 export const ListPageContainer = styled.div`
@@ -136,12 +182,13 @@ height: 100vh;
 `
 
 export const ListWrapper = styled.div`
-margin: 20px;
+margin: 0 20px;
 h2 {
   text-transform: uppercase;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
+  margin-top: 0;
   text-align: center;
 }
 p {
@@ -163,4 +210,18 @@ button {
   margin-bottom: 20px;
   bottom: 30px;
 }
+`
+
+export const KvittoContainer = styled.div`
+height: 100px;
+border-radius: 10px;
+filter: drop-shadow(1px 3px 2px rgba(0, 0, 0, 0.25));
+h1 {
+  font-size: 16px;
+  padding: 20px;
+}
+`
+
+export const ChangesText = styled.p`
+font-weight: 200;
 `

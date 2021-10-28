@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom'
 import history from '../../history'
 import Avatar from '../../images/avatar.png'
 import Checklist from '../../images/checklist.png'
+import { FoodData } from '../FoodData/data';
 import {
   BytaVaraContainer,
   TopWrapper,
@@ -26,9 +27,14 @@ const BytaVara = () => {
     h2o,
     ecoAlt,
     ecoHallbarhet,
+    ecoH2o2,
+    ecoHallbarhet2,
     ecoCo2,
-    ecoH2o
+    ecoH2o,
+    miniDesc
   } = location.state.item;
+
+  // const changeItem = FoodData.filter(item => item.name === name)
 
   function handleGoback() {
     window.history.back()
@@ -50,19 +56,28 @@ const BytaVara = () => {
 
       <AlternativWrapper>
         <h3>Alternativ till {name}</h3>
-        <h4>Quorn</h4>
-        <AltContainer>
 
-          <p>Köttliknande produkt som
-            görs av ett svampprotein.</p>
+
+        <AltContainer>
+          <h4>{ecoAlt}</h4>
+          <p>{miniDesc}</p>
           <ProcentContainer>
-            <h4>90<span>%</span></h4>
+            <h4>{ecoHallbarhet}<span>%</span></h4>
             <h5>hållbarhet</h5>
           </ProcentContainer>
         </AltContainer>
-        <h4>Sojafärs</h4>
-        <AltContainer>
 
+        {/* {
+  if (ecoAlt2 !== null){
+          <h4>{ecoAlt}</h4>
+        } else {
+          console.log('something')
+        }
+        } */}
+
+        {/* <h4>Sojafärs</h4> */}
+
+        {/* <AltContainer>
           <p>Köttliknande produkt av
             sojaprotein som utvinns
             ur sojabönor. Finns i flera
@@ -71,8 +86,10 @@ const BytaVara = () => {
             <h4>85<span>%</span></h4>
             <h5>hållbarhet</h5>
           </ProcentContainer>
-        </AltContainer>
+        </AltContainer> */}
+
       </AlternativWrapper>
+
       <BtnWrapper>
         <button>
           Byt ut varan

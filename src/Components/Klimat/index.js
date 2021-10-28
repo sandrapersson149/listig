@@ -17,9 +17,9 @@ import Avatar from '../../images/avatar.png'
 const Klimat = () => {
 
   let location = useLocation()
-  let { name, hallbarhet, co2, h2o } = location.state.item;
+  let { name, hallbarhet, co2, h2o, desc } = location.state.item;
 
-  console.log(name)
+  // console.log(name)
 
   function handleGoback() {
     window.history.back()
@@ -52,14 +52,7 @@ const Klimat = () => {
 
       <HeadWrapper>
         <h1>{name}</h1>
-        <p>
-          Nötkött är det
-          köttslag som har högst klimatpåverkan eftersom djuren släpper
-          ut metan.</p>
-        <p>Nötkött som produceras i intensiva
-          uppfödningssystem, där djuren äter spannmål och soja, kan ha negativ miljöpåverkan
-          i form av minskad biologisk mångfald och ökad användning av bekämpningsmedel.
-        </p>
+        <p>{desc}</p>
       </HeadWrapper>
 
       <KlimatWrapper>
