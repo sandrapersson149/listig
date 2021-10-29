@@ -10,6 +10,7 @@ import history from './history';
 import Klimat from './Components/Klimat';
 import BytaVara from './Components/BytaVara';
 import { FoodData } from './Components/FoodData/data';
+import Kvitto from './Components/Kvitto';
 const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto', sans-serif;
@@ -70,6 +71,9 @@ function App() {
           </Route>
           <Route path='/bytavara'>
             <BytaVara />
+          </Route>
+          <Route path='/kvitto'>
+            <Kvitto />
           </Route>
         </Switch>
       </Router>

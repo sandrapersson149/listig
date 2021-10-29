@@ -118,13 +118,17 @@ h4 {
 `
 
 export const UncheckedIcon = styled(FiCircle)`
-padding: 10px;
+position: absolute;
+top: 7px;
+left: 10px;
 width: 20px;
 height: 20px;
 `
 
 export const CheckedIcon = styled(FiCheckCircle)`
-padding: 10px;
+position: absolute;
+top: 7px;
+left: 10px;
 width: 20px;
 height: 20px;
 `
@@ -224,4 +228,37 @@ h1 {
 
 export const ChangesText = styled.p`
 font-weight: 200;
+`
+
+export const Wrapper = styled.div`
+
+`
+
+export const LargeWrapper = styled.div`
+background-color: inherit;
+position: absolute;
+z-index: 10;
+top: 0;
+margin-bottom: 150px;
+border-radius: 10px;
+filter: drop-shadow(1px 3px 2px rgba(0, 0, 0, 0.25));
+`
+
+export const NumSumContainer = styled.div`
+
+`
+
+export const ItemSumContainer = styled.div`
+
+`
+
+export const TopContainer = styled.div`
+.largeHeading {
+  text-align: center;
+  font-size: 22px;
+}
+`
+
+export const AdjustmentsContainer = styled.div`
+
 `

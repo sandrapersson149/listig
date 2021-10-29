@@ -1,4 +1,3 @@
-import { getNodeText } from '@testing-library/react';
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom'
 import history from '../../history'
@@ -25,7 +24,8 @@ import {
   BtnContainer,
   ExpandedDiv,
   KvittoContainer,
-  ChangesText
+  ChangesText,
+  Wrapper,
 } from './ListStyled';
 
 const List = ({ lists, setLists }) => {
@@ -40,6 +40,7 @@ const List = ({ lists, setLists }) => {
   const [filterdItems, setFilterdItems] = useState([])
   const [checked, setChecked] = useState(false)
   const [expandItem, setExpandItem] = useState(false)
+  const [openKvitto, setOpenKvitto] = useState(false)
 
   const allLists = JSON.parse(localStorage.getItem("Lists"));
 
@@ -135,6 +136,19 @@ const List = ({ lists, setLists }) => {
       });
 
   }
+
+  const handleOpenKvitto = (id) => {
+    const dataTransfer = listOfVaror
+    history.push
+      ({
+        pathname: `/kvitto/${id}`,
+        state:
+        {
+          item: dataTransfer,
+        }
+      });
+
+  }
   // useEffect(() => {
 
   // }, [])
@@ -175,9 +189,10 @@ const List = ({ lists, setLists }) => {
                   {expandItem === vara.id ?
                     <ExpandedItemsInList key={index}>
                       <ExpandedDiv>
-                        <span onClick={() => handleChangeCheckmark(vara.id)}>
-                          {checked === vara.id ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
-                        </span><h4>{vara.name}</h4>
+                        <span onClick={() => setChecked(!checked)}>
+                          <UncheckedIcon />
+                          {checked && (<CheckedIcon className='complete' />)}</span>
+                        <h4>{vara.name}</h4>
                         <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
                       </ExpandedDiv>
                       <InfoContainer>
@@ -187,9 +202,10 @@ const List = ({ lists, setLists }) => {
                     </ExpandedItemsInList>
                     :
                     <ItemsInList key={vara.id}>
-                      <span onClick={() => handleChangeCheckmark(vara.id)}>
-                        {checked === vara.id ? <CheckedIcon className='complete' /> : <UncheckedIcon />}
-                      </span><h4>{vara.name}</h4>
+                      <span onClick={() => setChecked(!checked)}>
+                        <UncheckedIcon />
+                        {checked && (<CheckedIcon className='complete' />)}</span>
+                      <h4>{vara.name}</h4>
                       <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
                     </ItemsInList>
                   }
@@ -200,9 +216,12 @@ const List = ({ lists, setLists }) => {
           </ul>
         </Container>
 
-        <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }}>
-          <h1>Klimatkvitto</h1>
-          <ChangesText>Finns förbättringar</ChangesText>
+        <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }} onClick={() => handleOpenKvitto(id)}>
+
+          <Wrapper>
+            <h1>Klimatkvitto</h1>
+            <ChangesText>Finns förbättringar</ChangesText>
+          </Wrapper>
         </KvittoContainer>
 
         <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
