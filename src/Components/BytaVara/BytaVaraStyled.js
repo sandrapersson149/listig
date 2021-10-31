@@ -5,10 +5,10 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
+
 export const TopWrapper = styled.div`
 margin: 30px 0;
 `
-
 
 export const BackBtn = styled.button`
 border: none;
@@ -46,7 +46,6 @@ h4 {
   color: #353535;
 }
 `
-
 
 export const AltContainer = styled.div`
 display: flex;

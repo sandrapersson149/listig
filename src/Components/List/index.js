@@ -30,7 +30,6 @@ import {
 
 const List = ({ lists, setLists }) => {
 
-
   let location = useLocation()
   let { title, varor, id } = location.state.item;
   localStorage.setItem("Lists", JSON.stringify(lists));
@@ -40,7 +39,6 @@ const List = ({ lists, setLists }) => {
   const [filterdItems, setFilterdItems] = useState([])
   const [checked, setChecked] = useState(false)
   const [expandItem, setExpandItem] = useState(false)
-  const [openKvitto, setOpenKvitto] = useState(false)
 
   const allLists = JSON.parse(localStorage.getItem("Lists"));
 
@@ -149,9 +147,6 @@ const List = ({ lists, setLists }) => {
       });
 
   }
-  // useEffect(() => {
-
-  // }, [])
 
   return (
     <ListPageContainer>

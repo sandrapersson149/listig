@@ -5,6 +5,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
+
 export const TopWrapper = styled.div`
 margin: 30px 0;
 `

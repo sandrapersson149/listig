@@ -34,42 +34,42 @@ ul{
   padding: 0;
 }
 li{
-  margin: 7px 0;
+  margin: 8px 0;
   display: flex;
+  justify-content: space-between;
   list-style: none;
-  padding: 10px;
   background-color: #E1E1E1;
   border-radius: 10px;
+  padding: 5px;
 }
-a {
-  text-decoration: none;
-}
+
 span {
   color: #353535;
   font-size: 18px;
   font-weight: 500;
-  text-align: center;
-  padding: 5px 10px 0 10px;
+  text-align: left;
+  padding: 5px 0;
+  width: 50%;
 }
 p {
-  font-weight: 500;
-  font-size: 10px;
-  padding-left: 10px;
+  font-weight: 400;
+  font-size: 13px;
+  margin: 0;
+  margin-top: 7px;
+  padding: 0 5px;
 }
 `
 
 export const ListIcon = styled(FaListUl)`
-padding-right: 5px;
-padding-top: 5px;
-margin-right: 15px;
-width: 18px;
-height: 18px;
+padding: 5px 15px;
+width: 20px;
+height: 20px;
 color: #787878;
 `
 
 export const OptionsIcon = styled(HiDotsHorizontal)`
 color: #A7A7A7;
-padding: 0 10px;
+padding-right:10px;
 width: 30px;
 height: 30px;
 `

@@ -37,7 +37,7 @@ function App() {
   }
 
   useEffect(() => {
-    if (lists.find(list => list.title == 'Mat till helgen')) {
+    if (lists.find(list => list.title === 'Mat till helgen')) {
 
       console.log('found')
     } else {

@@ -19,8 +19,6 @@ const Klimat = () => {
   let location = useLocation()
   let { name, hallbarhet, co2, h2o, desc } = location.state.item;
 
-  // console.log(name)
-
   function handleGoback() {
     window.history.back()
   }
@@ -36,7 +34,6 @@ const Klimat = () => {
           item: itemData,
         }
       });
-
   }
 
 

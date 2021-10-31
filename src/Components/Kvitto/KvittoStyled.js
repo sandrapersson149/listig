@@ -32,16 +32,18 @@ a {
 
 
 export const KvittoContainer = styled.div`
-height: 70vh;
+height: 80vh;
 width: 85vw;
 margin: auto;
 border-radius: 10px;
 padding: 15px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 
 export const LargeWrapper = styled.div`
 background-color: #fff;
-margin-bottom: 150px;
+height: 97%;
+/* margin-bottom: 150px; */
 border-radius: 10px;
 padding: 10px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
@@ -49,21 +51,17 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
 export const TopContainer = styled.div`
 padding-top: 20px;
+border-bottom: 3px solid lightgray;
 .largeHeading {
   text-align: center;
   font-size: 22px;
 }
-.feedbackHeader {
-font-size: 18px;
-text-align: center;
-font-weight: 300;
-}
 .feedbackText {
-padding: 0 30px;
-font-size: 17px;
+padding: 0 15px;
+font-size: 16px;
 line-height: 20px;
 text-align: center;
-font-weight: 500;
+font-weight: 400;
 }
 `
 
@@ -80,7 +78,7 @@ font-size: 16px;
   font-size: 16px;
 }
 .num {
-  color: green;
+  color: #26AE60;
   padding-left: 10px;
   font-weight: 900;
 font-size: 17px;
@@ -89,6 +87,7 @@ font-size: 17px;
 
 export const AdjustmentsContainer = styled.div`
 padding: 10px 0;
+border-bottom: 3px solid lightgray;
 .adjustHeader {
 padding: 0 10px;
 font-weight: 500;
@@ -101,6 +100,7 @@ padding: 0 10px;
 .newItemName {
 padding-left: 10px;
 font-weight: 800;
+color: #26AE60;
 }
 `
 
@@ -126,6 +126,7 @@ font-size: 16px;
 padding-left: 10px;
 font-weight: 900;
 font-size: 17px;
+
 }
 `
 

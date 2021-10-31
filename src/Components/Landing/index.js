@@ -42,8 +42,8 @@ const Landing = () => {
             <li key={item.id} onClick={() => handleClickedList(item)}>
               <ListIcon />
               <span>{item.title}</span>
+              <p>{JSON.parse(item.varor.length)}</p>
               <OptionsIcon />
-              {/* <p>antal</p> */}
             </li>
           ))}
         </ul>
