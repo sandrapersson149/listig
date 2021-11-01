@@ -39,6 +39,7 @@ const List = ({ lists, setLists }) => {
   const [filterdItems, setFilterdItems] = useState([])
   const [checked, setChecked] = useState(false)
   const [expandItem, setExpandItem] = useState(false)
+  // const [showKvitto, setShowKvitto] = useState(false)
 
   const allLists = JSON.parse(localStorage.getItem("Lists"));
 
@@ -50,8 +51,12 @@ const List = ({ lists, setLists }) => {
       const found = FoodData.find(item => item.name === varor[i])
       listOfVaror.push(found)
     }
+
   }
   listAllItems(varor)
+
+  console.log(listOfVaror)
+
   const getHallbarhet = listOfVaror.map(item => item.hallbarhet)
 
   const getBackgroundColor = (arr) => {
@@ -65,6 +70,19 @@ const List = ({ lists, setLists }) => {
       color = '#26AE60';
     }
     return color;
+  };
+
+  const getTextForKvitto = (arr) => {
+
+    let text;
+    if (arr.find(num => num >= 1 && num < 20)) {
+      text = 'Du bör kolla på alternativ till mer hållbara varor';
+    } else if (arr.find(num => num >= 20 && num < 80)) {
+      text = 'Finns förbättringar att göra';
+    } else if (arr.find(num => num >= 80)) {
+      text = 'Bra Jobbat!';
+    }
+    return text;
   };
 
 
@@ -114,10 +132,8 @@ const List = ({ lists, setLists }) => {
 
   const handleExpandedItem = (id) => {
     if (expandItem === id) {
-      console.log('true')
       return setExpandItem(true)
     }
-    console.log('false')
     setExpandItem(id)
   }
 
@@ -146,6 +162,45 @@ const List = ({ lists, setLists }) => {
         }
       });
 
+  }
+
+  useEffect(() => {
+
+  }, [])
+
+  const renderVarorToList = () => {
+    if (listOfVaror.length === 0) {
+      return <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
+    }
+    else {
+      return listOfVaror.map((vara, index) => (
+        <div onClick={() => handleExpandedItem(vara.id)}>
+
+          {expandItem === vara.id ?
+            <ExpandedItemsInList key={index}>
+              <ExpandedDiv>
+                <span onClick={() => setChecked(!checked)}>
+                  <UncheckedIcon />
+                  {checked && (<CheckedIcon className='complete' />)}</span>
+                <h4>{vara.name}</h4>
+                <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
+              </ExpandedDiv>
+              <InfoContainer>
+                <h3 onClick={() => goToKlimat(vara.name)}>Klimatpåverkan</h3>
+                <h3>Alternativ på hållbara varor</h3>
+              </InfoContainer>
+            </ExpandedItemsInList>
+            :
+            <ItemsInList key={vara.id}>
+              <span onClick={() => setChecked(!checked)}>
+                <UncheckedIcon />
+                {checked && (<CheckedIcon className='complete' />)}</span>
+              <h4>{vara.name}</h4>
+              <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
+            </ItemsInList>
+          }
+        </div>))
+    }
   }
 
   return (
@@ -177,47 +232,21 @@ const List = ({ lists, setLists }) => {
           )
           }
           <ul>
-            {varor ?
-              listOfVaror.map((vara, index) => (
-                <div onClick={() => handleExpandedItem(vara.id)}>
 
-                  {expandItem === vara.id ?
-                    <ExpandedItemsInList key={index}>
-                      <ExpandedDiv>
-                        <span onClick={() => setChecked(!checked)}>
-                          <UncheckedIcon />
-                          {checked && (<CheckedIcon className='complete' />)}</span>
-                        <h4>{vara.name}</h4>
-                        <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
-                      </ExpandedDiv>
-                      <InfoContainer>
-                        <h3 onClick={() => goToKlimat(vara.name)}>Klimatpåverkan</h3>
-                        <h3>Alternativ på hållbara varor</h3>
-                      </InfoContainer>
-                    </ExpandedItemsInList>
-                    :
-                    <ItemsInList key={vara.id}>
-                      <span onClick={() => setChecked(!checked)}>
-                        <UncheckedIcon />
-                        {checked && (<CheckedIcon className='complete' />)}</span>
-                      <h4>{vara.name}</h4>
-                      <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
-                    </ItemsInList>
-                  }
-                </div>))
-              :
-              <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
-            }
+            {renderVarorToList()}
+
+
           </ul>
         </Container>
+        {listOfVaror.length > 0 ?
+          <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }} onClick={() => handleOpenKvitto(id)}>
+            <Wrapper>
+              <h1>Klimatkvitto</h1>
+              <p className='kvittText'>{getTextForKvitto(getHallbarhet)}</p>
+            </Wrapper>
+          </KvittoContainer> : null
+        }
 
-        <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }} onClick={() => handleOpenKvitto(id)}>
-
-          <Wrapper>
-            <h1>Klimatkvitto</h1>
-            <ChangesText>Finns förbättringar</ChangesText>
-          </Wrapper>
-        </KvittoContainer>
 
         <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
 

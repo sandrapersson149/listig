@@ -217,12 +217,11 @@ h1 {
 }
 `
 
-export const ChangesText = styled.p`
-font-weight: 200;
-`
-
 export const Wrapper = styled.div`
-
+.kvittText{
+margin: 5px; 
+font-weight: 400;
+}
 `
 
 export const LargeWrapper = styled.div`
