@@ -220,7 +220,9 @@ h1 {
 export const Wrapper = styled.div`
 .kvittText{
 margin: 5px; 
+padding-right: 5px;
 font-weight: 400;
+text-align: right;
 }
 `
 
