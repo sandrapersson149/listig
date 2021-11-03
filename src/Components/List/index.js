@@ -16,16 +16,15 @@ import {
   UncheckedIcon,
   CheckedIcon,
   ListWrapper,
-  ExpandedItemsInList,
   PlusMinusContainer,
   MinusIcon,
   PlusIcon,
   InfoIcon,
   InfoContainer,
   BtnContainer,
-  ExpandedDiv,
   KvittoContainer,
   Wrapper,
+  LiWrapper
 } from './ListStyled';
 
 const List = ({ lists, setLists }) => {
@@ -40,14 +39,13 @@ const List = ({ lists, setLists }) => {
   const [checked, setChecked] = useState(false)
   const [expandItem, setExpandItem] = useState(false)
   const [clickedItemsID, setClickedItemsID] = useState([])
-  // const isChecked = todo.checked ? 'done' : '';
 
   const allLists = JSON.parse(localStorage.getItem("Lists"));
 
   const activListRightNow = allLists.find(list => list.title === title)
   // let valdaVaror = activListRightNow.varor
   // const allItemsInList = activListRightNow.map(item => item.)
-  console.log(activListRightNow)
+
   let listOfVaror = [];
 
   const listAllItems = (varor) => {
@@ -85,13 +83,11 @@ const List = ({ lists, setLists }) => {
     return text;
   };
 
-  const handleChangeCheckmark = (index) => {
-    setClickedItemsID(index)
-
-    if (checked === index) {
+  const completeListItem = (id) => {
+    if (checked === id) {
       return setChecked(true)
     }
-    setChecked(index)
+    setChecked(id)
   }
 
   const handleFilter = (e) => {
@@ -129,7 +125,7 @@ const List = ({ lists, setLists }) => {
       localStorage.setItem("Lists", JSON.stringify(lists));
     }
   }
-  console.log(listOfVaror)
+  // console.log(listOfVaror)
   const handleExpandedItem = (id) => {
     if (expandItem === id) {
       return setExpandItem(true)
@@ -170,32 +166,27 @@ const List = ({ lists, setLists }) => {
     }
     else {
       return listOfVaror.map((vara, index) => (
-        <div onClick={() => handleExpandedItem(vara.id)}>
+        <LiWrapper>
+          <ItemsInList key={vara.id} onClick={() => handleExpandedItem(vara.id)}>
+            <span onClick={() => completeListItem(vara.id)}>
 
-          {expandItem === vara.id ?
-            <ExpandedItemsInList key={index}>
-              <ExpandedDiv>
-                <span onClick={() => setChecked(!checked)}>
-                  <UncheckedIcon />
-                  {checked && (<CheckedIcon className='complete' />)}</span>
-                <h4>{vara.name}</h4>
-                <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
-              </ExpandedDiv>
-              <InfoContainer>
-                <h3 onClick={() => goToKlimat(vara.name)}>Klimatpåverkan</h3>
-                <h3>Alternativ på hållbara varor</h3>
-              </InfoContainer>
-            </ExpandedItemsInList>
-            :
-            <ItemsInList key={vara.id}>
-              <span onClick={() => setChecked(!checked)}>
+              {checked === vara.id ?
+                <CheckedIcon /> :
                 <UncheckedIcon />
-                {checked && (<CheckedIcon className='complete' />)}</span>
-              <h4>{vara.name}</h4>
-              <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
-            </ItemsInList>
-          }
-        </div>))
+              }
+            </span>
+
+
+            <h4>{vara.name}</h4>
+            <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
+          </ItemsInList>
+          {expandItem === vara.id && (
+            <InfoContainer>
+              <h3 onClick={() => goToKlimat(vara.name)}>Klimatpåverkan</h3>
+              <h3>Alternativ på hållbara varor</h3>
+            </InfoContainer>
+          )}
+        </LiWrapper>))
     }
   }
 
@@ -206,48 +197,42 @@ const List = ({ lists, setLists }) => {
   }, [])
 
   return (
-    <ListPageContainer>
-      <AvatarWrapper>
-        <img src={Avatar} alt='Profile avatar'></img>
-      </AvatarWrapper>
-      <BackBtn><Link to="/landing">Back</Link></BackBtn>
-      <ListWrapper>
-        <h2>{title}</h2>
+    <>
+      <ListPageContainer>
+        <AvatarWrapper>
+          <img src={Avatar} alt='Profile avatar'></img>
+        </AvatarWrapper>
+        <BackBtn><Link to="/landing">Back</Link></BackBtn>
+        <ListWrapper>
+          <h2>{title}</h2>
 
-        <Container>
-          {showSearch && (
-            <SearchWrapper>
-              <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
-              {
-                filterdItems.length !== 0 && (
-
+          <Container>
+            {showSearch && (
+              <SearchWrapper>
+                <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
+                {filterdItems.length !== 0 && (
                   filterdItems.map((item, index) => (
                     <SearchResultContainer className={item.id} key={index} onClick={() => addItemToList(item)}>
                       <p>{item.name}</p>
-
                     </SearchResultContainer>
-                  ))
-                )
-              }
-            </SearchWrapper>
-          )
-          }
-          <ul>
-            {renderVarorToList()}
-          </ul>
-        </Container>
-        {listOfVaror.length > 0 ?
-          <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }} onClick={() => handleOpenKvitto(id)}>
-            <Wrapper>
-              <h1>Klimatkvitto</h1>
-              <p className='kvittText'>{getTextForKvitto(getHallbarhet)}</p>
-            </Wrapper>
-          </KvittoContainer> : null
-        }
-        <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
-
-      </ListWrapper>
-    </ListPageContainer>
+                  )))}
+              </SearchWrapper>
+            )}
+            <ul>
+              {renderVarorToList()}
+            </ul>
+          </Container>
+          {listOfVaror.length > 0 ?
+            <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }} onClick={() => handleOpenKvitto(id)}>
+              <Wrapper>
+                <h1>Klimatkvitto</h1>
+                <p className='kvittText'>{getTextForKvitto(getHallbarhet)}</p>
+              </Wrapper>
+            </KvittoContainer> : null}
+          <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
+        </ListWrapper>
+      </ListPageContainer>
+    </>
   )
 }
 

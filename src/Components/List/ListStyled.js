@@ -66,13 +66,16 @@ p {
 }
 `
 
+export const LiWrapper = styled.div`
+background-color: #E1E1E1;
+filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
+border-radius: 10px;
+`
+
 export const ItemsInList = styled.li`
 display: flex;
 justify-content: space-between;
 list-style: none;
-background-color: #E1E1E1;
-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
-border-radius: 10px;
 margin: 5px;
 h4 {
 width: 100px;
@@ -84,45 +87,33 @@ padding-top: 10px;
 .complete {
   text-decoration: overline;
 }
-`
-
-export const ExpandedItemsInList = styled.li`
-display: flex;
-flex-direction: column;
-height: 120px;
-list-style: none;
-background-color: #E1E1E1;
-filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
-border-radius: 10px;
-margin: 5px;
-`
-
-export const ExpandedDiv = styled.div`
-display: flex;
-justify-content: space-between;
-h4 {
-  width: 100px;
-  font-size: 16px;
-  text-align: left;
-  margin: 0;
-  padding-top: 10px;
+.listItem {
+  text-decoration: none;
 }
 `
 
 export const UncheckedIcon = styled(FiCircle)`
-position: absolute;
+position: relative;
+z-index: 10;
 top: 7px;
 left: 10px;
 width: 20px;
 height: 20px;
+.complete {
+  text-decoration: overline;
+}
 `
 
 export const CheckedIcon = styled(FiCheckCircle)`
-position: absolute;
+position: relative;
+z-index: 10;
 top: 7px;
 left: 10px;
 width: 20px;
 height: 20px;
+.complete {
+  text-decoration: overline;
+}
 `
 
 export const BtnContainer = styled.div`
