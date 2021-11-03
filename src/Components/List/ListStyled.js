@@ -86,6 +86,7 @@ padding-top: 10px;
 }
 .complete {
   text-decoration: overline;
+  color: green;
 }
 .listItem {
   text-decoration: none;
@@ -151,6 +152,7 @@ color: #828282;
 export const InfoContainer = styled.div`
 display: flex;
 flex-direction: column;
+padding-bottom: 10px;
 h3 {
   padding: 5px;
   padding-left: 40px;

@@ -40,22 +40,31 @@ const List = ({ lists, setLists }) => {
   const [expandItem, setExpandItem] = useState(false)
   const [clickedItemsID, setClickedItemsID] = useState([])
 
+  localStorage.setItem("Lists", JSON.stringify(lists));
   const allLists = JSON.parse(localStorage.getItem("Lists"));
+  let listOfVaror = []
+  let newListOfVaror = []
 
-  const activListRightNow = allLists.find(list => list.title === title)
-  // let valdaVaror = activListRightNow.varor
-  // const allItemsInList = activListRightNow.map(item => item.)
+  function allItemsInList(title) {
+    if (title === null) {
+      console.log('title is null')
+    } else {
+      const activListRightNow = allLists.find(list => list.title === title)
+      for (let i = 0; i < activListRightNow.varor.length; i++) {
+        let foundVara = activListRightNow.varor[i]
+        listOfVaror.push(foundVara)
+      }
 
-  let listOfVaror = [];
-
-  const listAllItems = (varor) => {
-    for (let i = 0; i < varor.length; i++) {
-      const found = FoodData.find(item => item.name === varor[i])
-      listOfVaror.push(found)
+      // if (activListRightNow.varor.length !== 0) {
+      //   listOfVaror.push(activListRightNow.varor)
+      //   console.log(activListRightNow.varor)
+      //   // console.log('listofvaror inside func ' + JSON.stringify(listOfVaror))
+      // } else {
+      //   console.log('nothing')
+      // }
     }
   }
-  listAllItems(varor)
-
+  allItemsInList(title)
 
   const getHallbarhet = listOfVaror.map(item => item.hallbarhet)
 
@@ -104,14 +113,14 @@ const List = ({ lists, setLists }) => {
   }
 
   const addItemToList = (item) => {
-    setSearchedWord([...searchedWord, item.name])
-    listOfVaror.unshift(item)
+    setSearchedWord([...searchedWord, item])
 
     const updatedList = {
       title: title,
       id: id,
-      varor: [...searchedWord, item.name],
+      varor: [...listOfVaror, item],
     };
+
     removeActivListFromLS(id)
     addUpdatedListToLS(updatedList)
 
@@ -125,7 +134,7 @@ const List = ({ lists, setLists }) => {
       localStorage.setItem("Lists", JSON.stringify(lists));
     }
   }
-  // console.log(listOfVaror)
+
   const handleExpandedItem = (id) => {
     if (expandItem === id) {
       return setExpandItem(true)
@@ -159,26 +168,24 @@ const List = ({ lists, setLists }) => {
       });
 
   }
-
   const renderVarorToList = () => {
     if (listOfVaror.length === 0) {
       return <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
     }
     else {
-      return listOfVaror.map((vara, index) => (
-        <LiWrapper>
-          <ItemsInList key={vara.id} onClick={() => handleExpandedItem(vara.id)}>
+
+      return listOfVaror.map(vara => (
+
+        < LiWrapper >
+          <ItemsInList key={vara.id} >
             <span onClick={() => completeListItem(vara.id)}>
 
               {checked === vara.id ?
                 <CheckedIcon /> :
-                <UncheckedIcon />
-              }
+                <UncheckedIcon />}
             </span>
-
-
-            <h4>{vara.name}</h4>
-            <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon /></BtnContainer>
+            <h4 onClick={() => handleExpandedItem(vara.id)}>{vara.name}</h4>
+            <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon onClick={() => handleExpandedItem(vara.id)} /></BtnContainer>
           </ItemsInList>
           {expandItem === vara.id && (
             <InfoContainer>
@@ -186,13 +193,14 @@ const List = ({ lists, setLists }) => {
               <h3>Alternativ på hållbara varor</h3>
             </InfoContainer>
           )}
-        </LiWrapper>))
+        </LiWrapper >
+      ))
     }
   }
 
   useEffect(() => {
     // console.log('useEffect ran')
-    // localStorage.setItem("Lists", JSON.stringify(lists));
+
 
   }, [])
 
@@ -223,10 +231,14 @@ const List = ({ lists, setLists }) => {
             </ul>
           </Container>
           {listOfVaror.length > 0 ?
-            <KvittoContainer style={{ backgroundColor: getBackgroundColor(getHallbarhet) }} onClick={() => handleOpenKvitto(id)}>
+            <KvittoContainer
+              style={{ backgroundColor: getBackgroundColor(getHallbarhet) }}
+              onClick={() => handleOpenKvitto(id)}>
               <Wrapper>
                 <h1>Klimatkvitto</h1>
-                <p className='kvittText'>{getTextForKvitto(getHallbarhet)}</p>
+                <p className='kvittText'>
+                  {getTextForKvitto(getHallbarhet)}
+                </p>
               </Wrapper>
             </KvittoContainer> : null}
           <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>

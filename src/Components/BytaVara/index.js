@@ -55,13 +55,6 @@ const BytaVara = () => {
           </ProcentContainer>
         </AltContainer>
 
-        {/* {
-  if (ecoAlt2 !== null){
-          <h4>{ecoAlt}</h4>
-        } else {
-          console.log('something')
-        }
-        } */}
       </AlternativWrapper>
 
       <BtnWrapper>
