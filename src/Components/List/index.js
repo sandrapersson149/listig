@@ -7,6 +7,7 @@ import { FoodData } from '../FoodData/data';
 import {
   AvatarWrapper,
   BackBtn,
+  BackIcon,
   ListPageContainer,
   Container,
   SearchWrapper,
@@ -24,7 +25,8 @@ import {
   BtnContainer,
   KvittoContainer,
   Wrapper,
-  LiWrapper
+  LiWrapper,
+  EditIcon
 } from './ListStyled';
 
 const List = ({ lists, setLists }) => {
@@ -44,6 +46,9 @@ const List = ({ lists, setLists }) => {
   const allLists = JSON.parse(localStorage.getItem("Lists"));
   let listOfVaror = []
   let newListOfVaror = []
+
+  let listData = allLists.find(list => list.title === title)
+  console.log(listData)
 
   function allItemsInList(title) {
     if (title === null) {
@@ -143,7 +148,6 @@ const List = ({ lists, setLists }) => {
   }
 
   const goToKlimat = (vara) => {
-
     const itemData = FoodData.find(item => item.name === vara)
     history.push
       ({
@@ -151,9 +155,9 @@ const List = ({ lists, setLists }) => {
         state:
         {
           item: itemData,
+          list: listData,
         }
       });
-
   }
 
   const handleOpenKvitto = (id) => {
@@ -168,6 +172,17 @@ const List = ({ lists, setLists }) => {
       });
 
   }
+
+  const greenForChange = (vara) => {
+    let border;
+    if (vara.changedItem === true) {
+      border = '#26AE60'
+    } else {
+      border = 'none';
+    }
+    return border;
+  }
+
   const renderVarorToList = () => {
     if (listOfVaror.length === 0) {
       return <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
@@ -176,7 +191,7 @@ const List = ({ lists, setLists }) => {
 
       return listOfVaror.map(vara => (
 
-        < LiWrapper >
+        <LiWrapper style={{ color: greenForChange(vara) }}>
           <ItemsInList key={vara.id} >
             <span onClick={() => completeListItem(vara.id)}>
 
@@ -189,11 +204,11 @@ const List = ({ lists, setLists }) => {
           </ItemsInList>
           {expandItem === vara.id && (
             <InfoContainer>
-              <h3 onClick={() => goToKlimat(vara.name)}>Klimatpåverkan</h3>
-              <h3>Alternativ på hållbara varor</h3>
+              <h3 onClick={() => goToKlimat(vara.name)}> <InfoIcon className='infoIcon' /> Klimatpåverkan</h3>
+              <h3> <EditIcon />Alternativ på hållbara varor</h3>
             </InfoContainer>
           )}
-        </LiWrapper >
+        </LiWrapper>
       ))
     }
   }
@@ -210,7 +225,7 @@ const List = ({ lists, setLists }) => {
         <AvatarWrapper>
           <img src={Avatar} alt='Profile avatar'></img>
         </AvatarWrapper>
-        <BackBtn><Link to="/landing">Back</Link></BackBtn>
+        <BackBtn><Link to="/landing"> <BackIcon />Back</Link></BackBtn>
         <ListWrapper>
           <h2>{title}</h2>
 
@@ -235,7 +250,7 @@ const List = ({ lists, setLists }) => {
               style={{ backgroundColor: getBackgroundColor(getHallbarhet) }}
               onClick={() => handleOpenKvitto(id)}>
               <Wrapper>
-                <h1>Klimatkvitto</h1>
+                <h1 className='kvittoHeader'>Klimatkvitto <InfoIcon className='kvittoIcon' /></h1>
                 <p className='kvittText'>
                   {getTextForKvitto(getHallbarhet)}
                 </p>

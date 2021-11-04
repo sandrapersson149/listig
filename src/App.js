@@ -76,7 +76,7 @@ function App() {
             <Klimat />
           </Route>
           <Route path='/bytavara'>
-            <BytaVara />
+            <BytaVara lists={lists} setLists={setLists} />
           </Route>
           <Route path='/kvitto'>
             <Kvitto />

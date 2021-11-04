@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { BsArrowRight } from 'react-icons/bs'
 import { FaLeaf } from 'react-icons/bs'
 import { FaExchangeAlt } from 'react-icons/bs'
+import { BiLeftArrowAlt } from 'react-icons/bi'
 
 
 export const ListPageContainer = styled.div`
@@ -19,15 +20,21 @@ img{
 `
 
 export const BackBtn = styled.button`
-border: none;
+border: 1px solid black;
+border-radius: 10px;
 position: absolute;
 left: 20px;
 top: 20px;
 font-size: 17px;
+padding-left: 3px;
 a {
   text-decoration: none;
   color: black;
 }
+`
+
+export const BackIcon = styled(BiLeftArrowAlt)`
+height: 17px;
 `
 
 

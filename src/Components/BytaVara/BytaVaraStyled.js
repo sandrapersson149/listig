@@ -1,4 +1,16 @@
 import styled from "styled-components";
+import { FiCircle, FiCheckCircle, FiInfo } from 'react-icons/fi'
+import { BiLeftArrowAlt } from 'react-icons/bi'
+
+export const UncheckedIcon = styled(FiCircle)`
+width: 25px;
+height: 25px;
+`
+
+export const CheckedIcon = styled(FiCheckCircle)`
+width: 25px;
+height: 25px;
+`
 
 export const BytaVaraContainer = styled.div`
 display: flex;
@@ -11,16 +23,21 @@ margin: 30px 0;
 `
 
 export const BackBtn = styled.button`
-border: none;
-margin: 10px;
-width: 50px;
+border: 1px solid black;
+border-radius: 10px;
 position: absolute;
-left: 10px;
-top: 10px;
+left: 20px;
+top: 20px;
+font-size: 17px;
+padding-left: 3px;
 a {
-  color: black;
   text-decoration: none;
+  color: black;
 }
+`
+
+export const BackIcon = styled(BiLeftArrowAlt)`
+height: 17px;
 `
 
 export const AvatarWrapper = styled.div`
@@ -39,43 +56,72 @@ export const HeadWrapper = styled.div`
 
 export const AlternativWrapper = styled.div`
 h3 {
-  font-size: 19px;
+  font-size: 21px;
+  text-align: center;
+  padding: 10px 0;
 }
-h4 {
+.ecoAlt {
+  margin: 0;
+  padding-top: 15px;
   font-size: 17px;
   color: #353535;
+}
+.miniDesc {
+  font-size: 16px;
+  width: 90%;
+  text-align: center;
 }
 `
 
 export const AltContainer = styled.div`
 display: flex;
+flex-direction: column;
+background-color: #E1E1E1;
+border-radius: 10px;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+margin: 15px;
+h4 {
+  padding: 0 10px;
+}
 p{
   width: 50%;
 }
+.checkboxContainer {
+  height: 20px;
+  margin: 10px;
+};
+`
+
+export const InfoContainer = styled.div`
+display: flex;
+flex-wrap: wrap;
+margin: 10px;
 `
 
 export const ProcentContainer = styled.div`
 background-color: #26AE60;
 border-radius: 100%;
-width: 100px;
-height: 100px;
+width: 90px;
+height: 90px;
+margin:0 auto 15px auto;
+
 h4{
 margin: 0;
 padding-top: 10px;
 text-align: center;
-font-weight: 200;
-font-size: 36px;
+font-weight: 300;
+font-size: 28px;
 color: #fff;
 }
 span{
-  font-size:15px;
+  font-size: 13px;
   padding-left: 2px;
 }
 h5 {
 margin: 0;
 text-align: center;
-font-size: 15px;
-font-weight: 200;
+font-size: 13px;
+font-weight: 300;
 color: #fff;
 text-transform: capitalize;
 }
@@ -100,6 +146,7 @@ text-transform: uppercase;
 
 export const ImgWrapper = styled.div`
 img {
+  margin-top: 30px;
   width: 300px;
 }
 `

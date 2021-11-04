@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { FiCircle, FiCheckCircle, FiInfo } from 'react-icons/fi'
 import { HiPlusCircle, HiMinusCircle } from 'react-icons/hi'
+import { AiOutlineEdit } from 'react-icons/ai'
+import { BiLeftArrowAlt } from 'react-icons/bi'
 
 export const AvatarWrapper = styled.div`
 display: flex;
@@ -8,19 +10,26 @@ justify-content: end;
 img{
   width: 50px;
   margin: 20px;
+  margin-bottom: 10px;
 }
 `
 
 export const BackBtn = styled.button`
-border: none;
+border: 1px solid black;
+border-radius: 10px;
 position: absolute;
 left: 20px;
 top: 20px;
 font-size: 17px;
+padding-left: 3px;
 a {
   text-decoration: none;
   color: black;
 }
+`
+
+export const BackIcon = styled(BiLeftArrowAlt)`
+height: 17px;
 `
 
 export const Container = styled.div`
@@ -70,6 +79,7 @@ export const LiWrapper = styled.div`
 background-color: #E1E1E1;
 filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.25));
 border-radius: 10px;
+
 `
 
 export const ItemsInList = styled.li`
@@ -77,9 +87,10 @@ display: flex;
 justify-content: space-between;
 list-style: none;
 margin: 5px;
+padding: 5px 0;
 h4 {
-width: 100px;
-font-size: 16px;
+width: 130px;
+font-size: 15px;
 text-align: left;
 margin: 0;
 padding-top: 10px;
@@ -148,19 +159,35 @@ padding-right: 10px;
 width: 22px;
 height: 22px;
 color: #828282;
+
 `
 export const InfoContainer = styled.div`
 display: flex;
 flex-direction: column;
 padding-bottom: 10px;
 h3 {
-  padding: 5px;
+  padding: 0 10px;
   padding-left: 40px;
-  margin: 0;
-  font-size: 15px;
+  margin:5px 0;
+  font-size: 17px;
   font-weight: 300;
   text-align: left;
+  height: 20px;
 }
+.infoIcon {
+  margin: 0;
+  padding: 0;
+  padding-right: 10px;
+  width: 17px;
+}
+`
+
+export const EditIcon = styled(AiOutlineEdit)`
+color: gray;
+margin: 0;
+padding: 0;
+padding-right: 10px;
+width: 17px;
 `
 
 export const ListPageContainer = styled.div`
@@ -201,21 +228,31 @@ button {
 `
 
 export const KvittoContainer = styled.div`
-height: 100px;
+height: 70px;
 border-radius: 10px;
 filter: drop-shadow(1px 3px 2px rgba(0, 0, 0, 0.25));
 h1 {
   font-size: 16px;
-  padding: 20px;
+  padding: 10px 0 0 10px;
 }
 `
 
 export const Wrapper = styled.div`
+.kvittoHeader {
+  margin: 0;
+  padding: 5px 0 0 10px;
+}
 .kvittText{
-margin: 5px; 
-padding-right: 5px;
+margin: 0;
+padding: 10px 10px 5px 0;
 font-weight: 400;
 text-align: right;
+}
+.kvittoIcon {
+  padding: 0;
+  color: black;
+  width: 15px;
+  margin: 0;
 }
 `
 

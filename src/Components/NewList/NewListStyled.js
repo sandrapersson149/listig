@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { BiLeftArrowAlt } from 'react-icons/bi'
 
 export const NewListContainer = styled.div`
 height: 100vh;
@@ -7,13 +8,26 @@ flex-direction: column;
 `
 
 export const BackBtn = styled.button`
-border: none;
-margin: 10px;
-width: 50px;
+border: 1px solid black;
+border-radius: 10px;
+position: absolute;
+left: 20px;
+top: 20px;
+font-size: 17px;
+padding-left: 3px;
+a {
+  text-decoration: none;
+  color: black;
+}
+`
+
+export const BackIcon = styled(BiLeftArrowAlt)`
+height: 17px;
 `
 
 export const Wrapper = styled.div`
 margin: 20px;
+padding-top: 50px;
 h2 {
   font-size: 22px;
   margin-bottom: 0;

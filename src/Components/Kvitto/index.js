@@ -11,7 +11,8 @@ import {
   ItemSumContainer,
   TopContainer,
   AdjustmentsContainer,
-  Arrow
+  Arrow,
+  BackIcon
 } from './KvittoStyled';
 
 const Kvitto = () => {
@@ -40,6 +41,14 @@ const Kvitto = () => {
   const getH2o = listOfVaror.map(item => item.h2o)
   const sumOfGetH2o = getH2o.reduce((a, b) => a + b, 0)
 
+
+  function getChangedItems(arr) {
+
+    const changedItems = arr.filter(item => item.changedItem)
+    return changedItems.length
+
+  }
+  console.log(getChangedItems(listOfVaror))
   // text till toppen av kvittot
   const getKvittoText = (arr) => {
     let text;
@@ -72,7 +81,7 @@ const Kvitto = () => {
       <AvatarWrapper>
         <img src={Avatar} alt='Profile avatar'></img>
       </AvatarWrapper>
-      <BackBtn onClick={handleGoback}>back</BackBtn>
+      <BackBtn onClick={handleGoback}><BackIcon />Back</BackBtn>
       <KvittoContainer style={{ background: getColor(getHallbarhet) }}>
         <LargeWrapper>
           <TopContainer>
@@ -81,7 +90,7 @@ const Kvitto = () => {
           </TopContainer>
           <ItemSumContainer>
             <p className='sumItems'>Antal hållbara varor<span className='num'>{getNumOfGoodItems.length} st</span></p>
-            <p className='changedItems'>Utbytta varor<span className='num'>0 st</span></p>
+            <p className='changedItems'>Utbytta varor<span className='num'>{getChangedItems(listOfVaror)} st</span></p>
           </ItemSumContainer>
           <AdjustmentsContainer>
             <p className='adjustHeader'>Byt ut dessa varor för bättre resultat</p>

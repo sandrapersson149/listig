@@ -10,7 +10,8 @@ import {
   HeadWrapper,
   KlimatWrapper,
   StatsWrapper,
-  BtnWrapper
+  BtnWrapper,
+  BackIcon
 } from './KlimatStyled'
 import Avatar from '../../images/avatar.png'
 
@@ -18,10 +19,23 @@ const Klimat = () => {
 
   let location = useLocation()
   let { name, hallbarhet, co2, h2o, desc } = location.state.item;
+  const listData = location.state.list
 
   function handleGoback() {
     window.history.back()
   }
+
+  const getColor = (num) => {
+    let color;
+    if (num >= 1 && num < 20) {
+      color = 'red';
+    } else if (num >= 20 && num < 80) {
+      color = '#EFCE1E';
+    } else if (num => num >= 80) {
+      color = '#26AE60';
+    }
+    return color;
+  };
 
   const goToAlternativ = (vara) => {
 
@@ -32,6 +46,7 @@ const Klimat = () => {
         state:
         {
           item: itemData,
+          list: listData,
         }
       });
   }
@@ -41,7 +56,7 @@ const Klimat = () => {
     <KlimatContainer>
 
       <TopWrapper>
-        <BackBtn onClick={handleGoback}>Back</BackBtn>
+        <BackBtn onClick={handleGoback}><BackIcon />Back</BackBtn>
         <AvatarWrapper>
           <img src={Avatar} alt='Profile avatar' />
         </AvatarWrapper>
@@ -52,16 +67,16 @@ const Klimat = () => {
         <p>{desc}</p>
       </HeadWrapper>
 
-      <KlimatWrapper>
+      <KlimatWrapper style={{ backgroundColor: getColor(hallbarhet) }}>
         <h4>{hallbarhet}<span>%</span></h4>
         <h5>hållbarhet</h5>
       </KlimatWrapper>
 
       <StatsWrapper>
-        <h5>CO2 utsläpp</h5>
-        <p>{co2} kg</p>
-        <h5>Vattenförbrukning</h5>
-        <p>{h2o} L</p>
+        <h5 className='co2Title'>CO2 utsläpp</h5>
+        <p className='co2'>{co2} kg</p>
+        <h5 className='h2oTitle'>Vattenförbrukning</h5>
+        <p className='h2o'>{h2o} L</p>
       </StatsWrapper>
 
       <BtnWrapper>

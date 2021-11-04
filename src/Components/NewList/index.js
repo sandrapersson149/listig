@@ -4,6 +4,7 @@ import history from '../../history'
 import {
   NewListContainer,
   BackBtn,
+  BackIcon,
   Wrapper,
   AbortBtn,
   CreateBtn
@@ -34,7 +35,7 @@ const NewList = ({ input, setInput, lists, setLists }) => {
   return (
     <NewListContainer id='newlist'>
       <BackBtn>
-        <Link to="/landing">Back</Link>
+        <Link to="/landing"><BackIcon />Back</Link>
       </BackBtn>
       <Wrapper>
         <h2>Skapa inköpslista</h2>
