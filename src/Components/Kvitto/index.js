@@ -48,7 +48,7 @@ const Kvitto = () => {
     return changedItems.length
 
   }
-  console.log(getChangedItems(listOfVaror))
+
   // text till toppen av kvittot
   const getKvittoText = (arr) => {
     let text;

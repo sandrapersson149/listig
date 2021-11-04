@@ -39,8 +39,16 @@ const List = ({ lists, setLists }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [filterdItems, setFilterdItems] = useState([])
   const [checked, setChecked] = useState(false)
+  const [addNum, setAddNum] = useState(1)
   const [expandItem, setExpandItem] = useState(false)
-  const [clickedItemsID, setClickedItemsID] = useState([])
+
+  const [counter, setCounter] = useState(1);
+  // const incrementCounter = () => setCounter(counter + 1);
+  // let decrementCounter = () => setCounter(counter - 1);
+
+  // if (counter <= 1) {
+  //   decrementCounter = () => setCounter(1);
+  // }
 
   localStorage.setItem("Lists", JSON.stringify(lists));
   const allLists = JSON.parse(localStorage.getItem("Lists"));
@@ -48,7 +56,6 @@ const List = ({ lists, setLists }) => {
   let newListOfVaror = []
 
   let listData = allLists.find(list => list.title === title)
-  console.log(listData)
 
   function allItemsInList(title) {
     if (title === null) {
@@ -59,14 +66,6 @@ const List = ({ lists, setLists }) => {
         let foundVara = activListRightNow.varor[i]
         listOfVaror.push(foundVara)
       }
-
-      // if (activListRightNow.varor.length !== 0) {
-      //   listOfVaror.push(activListRightNow.varor)
-      //   console.log(activListRightNow.varor)
-      //   // console.log('listofvaror inside func ' + JSON.stringify(listOfVaror))
-      // } else {
-      //   console.log('nothing')
-      // }
     }
   }
   allItemsInList(title)
@@ -103,6 +102,16 @@ const List = ({ lists, setLists }) => {
     }
     setChecked(id)
   }
+
+  const addNumToItem = (id) => {
+    const incrementCounter = () => setCounter(counter + 1);
+    let decrementCounter = () => setCounter(counter - 1);
+
+    if (counter <= 1) {
+      decrementCounter = () => setCounter(1);
+    }
+  }
+
 
   const handleFilter = (e) => {
     const searchInput = e.target.value;
@@ -214,8 +223,6 @@ const List = ({ lists, setLists }) => {
   }
 
   useEffect(() => {
-    // console.log('useEffect ran')
-
 
   }, [])
 

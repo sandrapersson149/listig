@@ -50,7 +50,6 @@ const BytaVara = ({ lists, setLists }) => {
       id: id,
       varor: [...makeListWithoutItem, newChangedItem],
     };
-    console.log(updatedList)
 
     removeActivListFromLS(id)
     addUpdatedListToLS(updatedList)

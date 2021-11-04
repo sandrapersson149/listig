@@ -35,16 +35,10 @@ function App() {
     let foodItem = arr.map(item => item)
     return foodItem
   }
-  // console.log(demo)
-
-  // const testFindVaror = demo.varor.map(item => item.name)
-  // // const findVarorName = testFindVaror
-  // console.log(testFindVaror)
 
 
   useEffect(() => {
     if (lists.find(list => list.title === 'Mat till helgen')) {
-
       console.log('found')
     } else {
       setLists(lists => [...lists, demo])
