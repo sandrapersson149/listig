@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Link } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
 import history from '../../history'
@@ -10,7 +10,6 @@ import {
   BackIcon,
   ListPageContainer,
   Container,
-  SearchWrapper,
   SearchInput,
   SearchResultContainer,
   ItemsInList,
@@ -30,33 +29,21 @@ import {
 } from './ListStyled';
 
 const List = ({ lists, setLists }) => {
-
+  // datan från sidan innan sparas i uselocation
   let location = useLocation()
-  let { title, varor, id } = location.state.item;
+  let { title, id } = location.state.item;
 
-
-  const [searchedWord, setSearchedWord] = useState([])
   const [showSearch, setShowSearch] = useState(false)
   const [filterdItems, setFilterdItems] = useState([])
   const [checked, setChecked] = useState(false)
-  const [addNum, setAddNum] = useState(1)
   const [expandItem, setExpandItem] = useState(false)
-
-  const [counter, setCounter] = useState(1);
-  // const incrementCounter = () => setCounter(counter + 1);
-  // let decrementCounter = () => setCounter(counter - 1);
-
-  // if (counter <= 1) {
-  //   decrementCounter = () => setCounter(1);
-  // }
 
   localStorage.setItem("Lists", JSON.stringify(lists));
   const allLists = JSON.parse(localStorage.getItem("Lists"));
-  let listOfVaror = []
-  let newListOfVaror = []
-
   let listData = allLists.find(list => list.title === title)
+  let listOfVaror = []
 
+  // funktion för att hitta den aktiva listan och spara ner varorna i en array
   function allItemsInList(title) {
     if (title === null) {
       console.log('title is null')
@@ -70,13 +57,15 @@ const List = ({ lists, setLists }) => {
   }
   allItemsInList(title)
 
+  // hitta listans varors hållbarhet och spara dom i en array
   const getHallbarhet = listOfVaror.map(item => item.hallbarhet)
 
+  // funktion för att hitta det numret som är lägst i arrayen
   const getBackgroundColor = (arr) => {
     let color;
-    if (arr.find(num => num >= 1 && num < 20)) {
+    if (arr.find(num => num >= 1 && num < 25)) {
       color = 'red';
-    } else if (arr.find(num => num >= 20 && num < 80)) {
+    } else if (arr.find(num => num >= 26 && num < 80)) {
       color = '#EDE641';
     } else if (arr.find(num => num >= 80)) {
       color = '#26AE60';
@@ -84,11 +73,12 @@ const List = ({ lists, setLists }) => {
     return color;
   };
 
+  // funktion för att hitta texten til kvittot - baserat på hur hög hållbarhet varorna har
   const getTextForKvitto = (arr) => {
     let text;
-    if (arr.find(num => num >= 1 && num < 20)) {
+    if (arr.find(num => num >= 1 && num < 25)) {
       text = 'Byt ut varor för bättre resultat';
-    } else if (arr.find(num => num >= 20 && num < 80)) {
+    } else if (arr.find(num => num >= 26 && num < 80)) {
       text = 'Finns förbättringar att göra';
     } else if (arr.find(num => num >= 80)) {
       text = 'Bra Jobbat!';
@@ -96,6 +86,7 @@ const List = ({ lists, setLists }) => {
     return text;
   };
 
+  // funktion för att toggla checkboxen
   const completeListItem = (id) => {
     if (checked === id) {
       return setChecked(true)
@@ -103,16 +94,8 @@ const List = ({ lists, setLists }) => {
     setChecked(id)
   }
 
-  const addNumToItem = (id) => {
-    const incrementCounter = () => setCounter(counter + 1);
-    let decrementCounter = () => setCounter(counter - 1);
-
-    if (counter <= 1) {
-      decrementCounter = () => setCounter(1);
-    }
-  }
-
-
+  // funktion för sökrutan
+  // tar in det som skrivs i input rutan och söker i FoodData
   const handleFilter = (e) => {
     const searchInput = e.target.value;
     const newFilter = FoodData.filter((value) => {
@@ -126,9 +109,8 @@ const List = ({ lists, setLists }) => {
     }
   }
 
+  // funktion för att ta in den klickade varan från sökningen och lägga till den i listan + Local Storeage
   const addItemToList = (item) => {
-    setSearchedWord([...searchedWord, item])
-
     const updatedList = {
       title: title,
       id: id,
@@ -149,6 +131,7 @@ const List = ({ lists, setLists }) => {
     }
   }
 
+  // funktion för att hantera klick på item i listan - den expanderar li'n
   const handleExpandedItem = (id) => {
     if (expandItem === id) {
       return setExpandItem(true)
@@ -156,6 +139,7 @@ const List = ({ lists, setLists }) => {
     setExpandItem(id)
   }
 
+  // funktion för att skicka med datan till nästa sida
   const goToKlimat = (vara) => {
     const itemData = FoodData.find(item => item.name === vara)
     history.push
@@ -197,19 +181,23 @@ const List = ({ lists, setLists }) => {
       return <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
     }
     else {
-
-      return listOfVaror.map(vara => (
-
+      return listOfVaror.map((vara, index) => (
         <LiWrapper style={{ color: greenForChange(vara) }}>
-          <ItemsInList key={vara.id} >
+          <ItemsInList key={index} >
             <span onClick={() => completeListItem(vara.id)}>
-
               {checked === vara.id ?
-                <CheckedIcon /> :
-                <UncheckedIcon />}
+                <CheckedIcon />
+                :
+                <UncheckedIcon />
+              }
             </span>
-            <h4 onClick={() => handleExpandedItem(vara.id)}>{vara.name}</h4>
-            <BtnContainer> <PlusMinusContainer><MinusIcon />1<PlusIcon /></PlusMinusContainer><InfoIcon onClick={() => handleExpandedItem(vara.id)} /></BtnContainer>
+            <h4 onClick={() => handleExpandedItem(vara.id)} className={checked === vara.id ? 'complete' : 'listItem'}>{vara.name}</h4>
+            <BtnContainer>
+              <PlusMinusContainer>
+                <MinusIcon />1<PlusIcon />
+              </PlusMinusContainer>
+              <InfoIcon onClick={() => handleExpandedItem(vara.id)} />
+            </BtnContainer>
           </ItemsInList>
           {expandItem === vara.id && (
             <InfoContainer>
@@ -222,51 +210,42 @@ const List = ({ lists, setLists }) => {
     }
   }
 
-  useEffect(() => {
-
-  }, [])
-
   return (
-    <>
-      <ListPageContainer>
-        <AvatarWrapper>
-          <img src={Avatar} alt='Profile avatar'></img>
-        </AvatarWrapper>
-        <BackBtn><Link to="/landing"> <BackIcon />Back</Link></BackBtn>
-        <ListWrapper>
-          <h2>{title}</h2>
-
-          <Container>
-            {showSearch && (
-              <SearchWrapper>
-                <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
-                {filterdItems.length !== 0 && (
-                  filterdItems.map((item, index) => (
-                    <SearchResultContainer className={item.id} key={index} onClick={() => addItemToList(item)}>
-                      <p>{item.name}</p>
-                    </SearchResultContainer>
-                  )))}
-              </SearchWrapper>
-            )}
-            <ul>
-              {renderVarorToList()}
-            </ul>
-          </Container>
-          {listOfVaror.length > 0 ?
-            <KvittoContainer
-              style={{ backgroundColor: getBackgroundColor(getHallbarhet) }}
-              onClick={() => handleOpenKvitto(id)}>
-              <Wrapper>
-                <h1 className='kvittoHeader'>Klimatkvitto <InfoIcon className='kvittoIcon' /></h1>
-                <p className='kvittText'>
-                  {getTextForKvitto(getHallbarhet)}
-                </p>
-              </Wrapper>
-            </KvittoContainer> : null}
-          <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
-        </ListWrapper>
-      </ListPageContainer>
-    </>
+    <ListPageContainer>
+      <AvatarWrapper>
+        <img src={Avatar} alt='Profile avatar'></img>
+      </AvatarWrapper>
+      <BackBtn><Link to="/landing"> <BackIcon />Back</Link></BackBtn>
+      <ListWrapper>
+        <h2>{title}</h2>
+        <Container>
+          {showSearch && (
+            <div>
+              <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
+              {filterdItems.length !== 0 && (
+                filterdItems.map((item, index) => (
+                  <SearchResultContainer className={item.id} key={index} onClick={() => addItemToList(item)}>
+                    <p>{item.name}</p>
+                  </SearchResultContainer>
+                )))}
+            </div>
+          )}
+          <ul>
+            {renderVarorToList()}
+          </ul>
+        </Container>
+        {listOfVaror.length > 0 ?
+          <KvittoContainer
+            style={{ backgroundColor: getBackgroundColor(getHallbarhet) }}
+            onClick={() => handleOpenKvitto(id)}>
+            <Wrapper>
+              <h1 className='kvittoHeader'>Klimatkvitto <InfoIcon className='kvittoIcon' /></h1>
+              <p className='kvittText'>{getTextForKvitto(getHallbarhet)}</p>
+            </Wrapper>
+          </KvittoContainer> : null}
+        <button onClick={() => setShowSearch(!showSearch)}>Lägg till +</button>
+      </ListWrapper>
+    </ListPageContainer>
   )
 }
 

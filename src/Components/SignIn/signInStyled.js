@@ -18,7 +18,6 @@ h3 {
   color: #3E3E3E;
 }
 `
-
 export const SignInForm = styled.div`
 background-color: #F7F7F7;
 border-radius: 10px;
@@ -37,26 +36,24 @@ h5 {
 }
 `
 export const SignInBtn = styled.button`
-  border: none;
-  background-color: #FFD449;
-  border-radius: 10px;
-  width: 220px;
-  height: 40px;
+border: none;
+background-color: #FFD449;
+border-radius: 10px;
+width: 220px;
+height: 40px;
   a {
-    color: #3E3E3E;
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: 900;
-    font-size: 15px;
-  }
+  color: #3E3E3E;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-weight: 900;
+  font-size: 15px;
+}
 `
-
 export const GoogleIcon = styled(FcGoogle)`
 font-size: 25px;
 padding: 7px;
 background-color: #fff;
 `
-
 export const GoogleSignInBtn = styled.button`
 display: flex;
 flex-direction: row;

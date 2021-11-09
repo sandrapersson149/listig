@@ -6,12 +6,9 @@ display: flex;
 flex-direction: column;
 align-items: center;
 `
-
 export const TopWrapper = styled.div`
 margin: 30px 0;
 `
-
-
 export const BackBtn = styled.button`
 border: 1px solid black;
 border-radius: 10px;
@@ -25,11 +22,9 @@ a {
   color: black;
 }
 `
-
 export const BackIcon = styled(BiLeftArrowAlt)`
 height: 17px;
 `
-
 export const AvatarWrapper = styled.div`
 position: absolute;
 right: 10px;
@@ -39,7 +34,6 @@ img{
   margin: 20px;
 }
 `
-
 export const HeadWrapper = styled.div`
 display: flex;
 flex-direction: column;
@@ -58,7 +52,6 @@ p {
   margin: 5px 20px;
 }
 `
-
 export const KlimatWrapper = styled.div`
 margin: 30px;
 border-radius: 100%;
@@ -85,7 +78,6 @@ color: #fff;
 text-transform: capitalize;
 }
 `
-
 export const StatsWrapper = styled.div`
 .co2Title {
 text-align: center;
@@ -114,7 +106,6 @@ margin: 5px 0;
 margin-bottom: 20px;
 }
 `
-
 export const BtnWrapper = styled.div`
 button {
 width: 280px;

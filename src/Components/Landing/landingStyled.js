@@ -12,7 +12,6 @@ background: url(${FlowerHands}) no-repeat;
 background-size: 350px;
 background-position: left bottom;
 `
-
 export const AvatarWrapper = styled.div`
 display: flex;
 justify-content: end;
@@ -21,13 +20,11 @@ img{
   margin: 20px;
 }
 `
-
 export const LandingTitle = styled.h1`
 font-size: 25px;
 font-weight: 800;
 margin-left: 20px;
 `
-
 export const ListWrapper = styled.div`
 ul{
   margin: 10px;
@@ -42,7 +39,6 @@ li{
   border-radius: 10px;
   padding: 5px;
 }
-
 span {
   color: #353535;
   font-size: 18px;
@@ -59,27 +55,23 @@ p {
   padding: 0 5px;
 }
 `
-
 export const ListIcon = styled(FaListUl)`
 padding: 5px 15px;
 width: 20px;
 height: 20px;
 color: #787878;
 `
-
 export const OptionsIcon = styled(HiDotsHorizontal)`
 color: #A7A7A7;
 padding-right:10px;
 width: 30px;
 height: 30px;
 `
-
 export const BtnWrapper = styled.div`
 width: 100%;
 position: absolute;
 bottom: 30px;
 `
-
 export const NewListButton = styled.button`
 display: flex;
 justify-content: space-evenly;
@@ -97,7 +89,6 @@ a {
  color: black;
 }
 `
-
 export const AddIcon = styled(AiOutlinePlus)`
 width: 20px;
 height: 20px;

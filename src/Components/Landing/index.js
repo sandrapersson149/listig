@@ -15,11 +15,12 @@ import {
 } from './LandingStyled';
 
 const Landing = () => {
-
+  // alla listor tas in från Local Storage
   const dataFromLS = JSON.parse(localStorage.getItem("Lists"))
 
+  // funktion för att skicka med den klickad listans data
+  // history push skickar med all datan
   function handleClickedList(item) {
-
     history.push
       ({
         pathname: `/list/${item.id}`,
@@ -50,10 +51,7 @@ const Landing = () => {
       </ListWrapper>
       <BtnWrapper>
         <NewListButton>
-          <Link to="/newlist">
-            Ny Lista
-            <AddIcon />
-          </Link>
+          <Link to="/newlist">Ny Lista<AddIcon /></Link>
         </NewListButton>
       </BtnWrapper>
     </LandingContainer>

@@ -1,27 +1,15 @@
 import styled from "styled-components";
-import { FiCircle, FiCheckCircle, FiInfo } from 'react-icons/fi'
+import { FiCircle, FiCheckCircle } from 'react-icons/fi'
 import { BiLeftArrowAlt } from 'react-icons/bi'
-
-export const UncheckedIcon = styled(FiCircle)`
-width: 25px;
-height: 25px;
-`
-
-export const CheckedIcon = styled(FiCheckCircle)`
-width: 25px;
-height: 25px;
-`
 
 export const BytaVaraContainer = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
 `
-
 export const TopWrapper = styled.div`
 margin: 30px 0;
 `
-
 export const BackBtn = styled.button`
 border: 1px solid black;
 border-radius: 10px;
@@ -35,11 +23,9 @@ a {
   color: black;
 }
 `
-
 export const BackIcon = styled(BiLeftArrowAlt)`
 height: 17px;
 `
-
 export const AvatarWrapper = styled.div`
 position: absolute;
 right: 10px;
@@ -49,11 +35,6 @@ img{
   margin: 20px;
 }
 `
-
-export const HeadWrapper = styled.div`
-
-`
-
 export const AlternativWrapper = styled.div`
 h3 {
   font-size: 21px;
@@ -72,7 +53,6 @@ h3 {
   text-align: center;
 }
 `
-
 export const AltContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -91,20 +71,25 @@ p{
   margin: 10px;
 };
 `
-
 export const InfoContainer = styled.div`
 display: flex;
 flex-wrap: wrap;
 margin: 10px;
 `
-
+export const UncheckedIcon = styled(FiCircle)`
+width: 25px;
+height: 25px;
+`
+export const CheckedIcon = styled(FiCheckCircle)`
+width: 25px;
+height: 25px;
+`
 export const ProcentContainer = styled.div`
 background-color: #26AE60;
 border-radius: 100%;
 width: 90px;
 height: 90px;
 margin:0 auto 15px auto;
-
 h4{
 margin: 0;
 padding-top: 10px;
@@ -126,7 +111,6 @@ color: #fff;
 text-transform: capitalize;
 }
 `
-
 export const BtnWrapper = styled.div`
 margin-top: 40px;
 button {
@@ -143,7 +127,6 @@ font-size: 14px;
 text-transform: uppercase;
 }
 `
-
 export const ImgWrapper = styled.div`
 img {
   margin-top: 30px;

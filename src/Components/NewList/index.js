@@ -11,7 +11,8 @@ import {
 } from './NewListStyled'
 
 const NewList = ({ input, setInput, lists, setLists }) => {
-
+  // den nya listan skapas
+  // ett nytt objekt med titlen sparas i local storeage
   const handleClick = (newtitle) => {
     const newList = {
       title: newtitle,
@@ -21,6 +22,7 @@ const NewList = ({ input, setInput, lists, setLists }) => {
     setLists(lists => [...lists, newList])
     localStorage.setItem("Lists", JSON.stringify(lists));
 
+    // när man klickar på skapa skickas den nya informationen med
     history.push
       ({
         pathname: `/list/${newList.id}`,
@@ -30,7 +32,6 @@ const NewList = ({ input, setInput, lists, setLists }) => {
         }
       });
   }
-
 
   return (
     <NewListContainer id='newlist'>

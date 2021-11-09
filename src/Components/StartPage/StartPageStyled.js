@@ -17,7 +17,6 @@ h3 {
   color: #3E3E3E;
 }
 `
-
 export const BtnContainer = styled.div`
 background: #F7F7F7;
 border-radius: 10px;
@@ -40,7 +39,6 @@ p {
   margin-bottom: 25px;
 }
 `
-
 export const Title = styled.h1`
 font-family: 'Waiting for the Sunrise', cursive;
 font-size: 70px;
@@ -51,7 +49,6 @@ color: #3E3E3E;
 margin: 0;
 padding-top: 100px;
 `
-
 export const CreateAccBtn = styled.button`
 background-color: #E6E6E6;
 border-radius: 10px;
@@ -65,7 +62,6 @@ text-transform: uppercase;
 font-size: 14px;
 color: #3E3E3E;
 `
-
 export const SignInBtn = styled.span`
 a{
   color: #3E3E3E;
@@ -73,13 +69,11 @@ a{
   padding-left: 5px;
 }
 `
-
 export const GoogleIcon = styled(FcGoogle)`
 font-size: 25px;
 padding: 7px;
 background-color: #fff;
 `
-
 export const GoogleSignInBtn = styled.button`
 display: flex;
 flex-direction: row;

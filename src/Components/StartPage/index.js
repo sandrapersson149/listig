@@ -12,6 +12,8 @@ import {
 
 export const StartPage = () => {
 
+  // För att komma vidare i appen behöver man trycka på Logga in eller Google knappen
+  // Det finns inget kopplat till en användare i appen
   return (
     <StartPageContainer>
       <Title>Listig</Title>

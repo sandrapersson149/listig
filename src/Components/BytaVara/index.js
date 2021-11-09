@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import history from '../../history'
-import { Link } from "react-router-dom";
 import Avatar from '../../images/avatar.png'
 import Checklist from '../../images/checklist.png'
 import {
@@ -11,7 +10,6 @@ import {
   BackIcon,
   AvatarWrapper,
   AltContainer,
-  HeadWrapper,
   AlternativWrapper,
   ProcentContainer,
   BtnWrapper,
@@ -23,10 +21,9 @@ import {
 
 const BytaVara = ({ lists, setLists }) => {
   const [checked, setChecked] = useState(false)
-
-
   const allLists = JSON.parse(localStorage.getItem("Lists"));
   localStorage.setItem("Lists", JSON.stringify(lists));
+
   let location = useLocation()
   let activItem = location.state.item
   let { title, id, varor } = location.state.list
@@ -77,8 +74,7 @@ const BytaVara = ({ lists, setLists }) => {
     return color;
   };
 
-  const goBackTiList = () => {
-
+  const goBackToList = () => {
     history.push
       ({
         pathname: `/list/${id}`,
@@ -91,25 +87,24 @@ const BytaVara = ({ lists, setLists }) => {
 
   return (
     <BytaVaraContainer>
-
       <TopWrapper>
         <BackBtn onClick={handleGoback}> <BackIcon />Back</BackBtn>
         <AvatarWrapper>
           <img src={Avatar} alt='Profile avatar' />
         </AvatarWrapper>
       </TopWrapper>
-
       <AlternativWrapper>
         <h3>Alternativ till {activItem.name}</h3>
-
         <AltContainer>
           <InfoContainer>
             <span className='checkboxContainer' onClick={() => setChecked(!checked)}>
               {checked ?
-                <CheckedIcon /> : <UncheckedIcon onClick={() => updateCurrentList()} />
+                <CheckedIcon />
+                :
+                <UncheckedIcon onClick={() => updateCurrentList()} />
               }
             </span>
-            <h4 className='ecoAlt'  >{activItem.ecoAlt} </h4>
+            <h4 className='ecoAlt'>{activItem.ecoAlt}</h4>
             <p className='miniDesc'>{activItem.miniDesc}</p>
           </InfoContainer>
           <ProcentContainer
@@ -118,19 +113,13 @@ const BytaVara = ({ lists, setLists }) => {
             <h5>hållbarhet</h5>
           </ProcentContainer>
         </AltContainer>
-
       </AlternativWrapper>
-
       <BtnWrapper>
-        <button onClick={() => goBackTiList()}>
-          Byt ut varan
-        </button>
+        <button onClick={() => goBackToList()}>Byt ut varan</button>
       </BtnWrapper>
-
       <ImgWrapper>
         <img src={Checklist} alt='Checklist' />
       </ImgWrapper>
-
     </BytaVaraContainer>
   )
 }

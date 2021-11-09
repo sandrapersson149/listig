@@ -12,10 +12,9 @@ const SignIn = ({ lists }) => {
 
   useEffect(() => {
     localStorage.setItem("Lists", JSON.stringify(lists));
-
-
   }, [])
 
+  // För att komma vidare behöver man trycka på logga in eller Google knappen
   return (
     <SignInContainer id='signin'>
       <h3>Sign in</h3>

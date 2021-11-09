@@ -20,9 +20,7 @@ const GlobalStyle = createGlobalStyle`
 `
 
 function App() {
-
   const [input, setInput] = useState('')
-  const [title, setTitle] = useState('')
   const [lists, setLists] = useState(JSON.parse(localStorage.getItem("Lists")) || []);
 
   const demo = {
@@ -36,14 +34,12 @@ function App() {
     return foodItem
   }
 
-
   useEffect(() => {
     if (lists.find(list => list.title === 'Mat till helgen')) {
       console.log('found')
     } else {
       setLists(lists => [...lists, demo])
     }
-
   }, [])
 
   return (
@@ -52,19 +48,19 @@ function App() {
       <Router history={history}>
         <Switch>
           <Route exact path='/'>
-            <StartPage lists={lists} setLists={setLists} />
+            <StartPage />
           </Route>
           <Route path='/signin'>
-            <SignIn lists={lists} setLists={setLists} />
+            <SignIn lists={lists} />
           </Route>
           <Route path='/landing'>
-            <Landing lists={lists} setLists={setLists} />
+            <Landing />
           </Route>
           <Route path='/newlist'>
-            <NewList input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} />
+            <NewList input={input} setInput={setInput} lists={lists} setLists={setLists} />
           </Route>
           <Route exact path='/list/:title'>
-            <List input={input} setInput={setInput} title={title} setTitle={setTitle} lists={lists} setLists={setLists} />
+            <List lists={lists} setLists={setLists} />
           </Route>
           <Route path='/klimat'>
             <Klimat />

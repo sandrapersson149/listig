@@ -6,7 +6,6 @@ height: 100vh;
 display: flex;
 flex-direction: column;
 `
-
 export const BackBtn = styled.button`
 border: 1px solid black;
 border-radius: 10px;
@@ -20,11 +19,9 @@ a {
   color: black;
 }
 `
-
 export const BackIcon = styled(BiLeftArrowAlt)`
 height: 17px;
 `
-
 export const Wrapper = styled.div`
 margin: 20px;
 padding-top: 50px;
@@ -51,36 +48,33 @@ input {
   border-bottom: 2px solid #26AE60;
 }
 `
-
 export const AbortBtn = styled.button`
-  width: 110px;
-  height: 40px;
-  margin: auto;
-  border: none;
-  border-radius: 10px;
-  background-color: #C4C4C4;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  a {
+width: 110px;
+height: 40px;
+margin: auto;
+border: none;
+border-radius: 10px;
+background-color: #C4C4C4;
+font-size: 14px;
+font-weight: 600;
+text-transform: uppercase;
+a {
     text-decoration: none;
     color: white;
-  }
+}
 `
-
-
 export const CreateBtn = styled.button`
-  width: 110px;
-  height: 40px;
-  margin: auto;
-  border: none;
-  border-radius: 10px;
-  background-color: #26AE60;
-  font-size: 14px;
-  font-weight: 600;
-  text-transform: uppercase;
-  a {
+width: 110px;
+height: 40px;
+margin: auto;
+border: none;
+border-radius: 10px;
+background-color: #26AE60;
+font-size: 14px;
+font-weight: 600;
+text-transform: uppercase;
+a {
     text-decoration: none;
     color: white;
-  }
+}
 `

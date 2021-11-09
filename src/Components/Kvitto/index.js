@@ -27,11 +27,11 @@ const Kvitto = () => {
   const getHallbarhet = listOfVaror.map(item => item.hallbarhet)
 
   // hämta alla varor med hög hållbarhet
-  const getAllGoodItems = listOfVaror.filter(item => item.hallbarhet > 50)
-  const getNumOfGoodItems = getAllGoodItems.map(item => item.hallbarhet)
+  const getAllGoodItems = listOfVaror.filter(item => item.hallbarhet > 25)
+  const getNumOfGoodItems = getAllGoodItems.map(item => item.hallbarhet > 26)
 
   // hämta varor med låg hållbarhet
-  const getLowHallbarhet = listOfVaror.filter(item => item.hallbarhet < 30)
+  const getLowHallbarhet = listOfVaror.filter(item => item.hallbarhet < 25)
 
   // hämta alla co2 värden
   const getCo2 = listOfVaror.map(item => item.co2)
@@ -41,20 +41,17 @@ const Kvitto = () => {
   const getH2o = listOfVaror.map(item => item.h2o)
   const sumOfGetH2o = getH2o.reduce((a, b) => a + b, 0)
 
-
   function getChangedItems(arr) {
-
     const changedItems = arr.filter(item => item.changedItem)
     return changedItems.length
-
   }
 
   // text till toppen av kvittot
   const getKvittoText = (arr) => {
     let text;
-    if (arr.find(num => num >= 1 && num < 20)) {
+    if (arr.find(num => num >= 1 && num < 25)) {
       text = 'Du har en Röd inköpslista. Du borde tänka på att byta ut några varor för att få ett bättre resultat';
-    } else if (arr.find(num => num >= 20 && num < 80)) {
+    } else if (arr.find(num => num >= 25 && num < 80)) {
       text = 'Du har en Gul inköpslista! Med goda val kan du sänka din klimatpåverkan';
     } else if (arr.find(num => num >= 80)) {
       text = 'Du har en Grön inköpslista! Perfekt tänk med att handla så hållbara varor du kan';
@@ -65,16 +62,15 @@ const Kvitto = () => {
   // färg på kvittot
   const getColor = (arr) => {
     let color;
-    if (arr.find(num => num >= 1 && num < 20)) {
+    if (arr.find(num => num >= 1 && num < 25)) {
       color = 'red';
-    } else if (arr.find(num => num >= 20 && num < 80)) {
+    } else if (arr.find(num => num >= 25 && num < 80)) {
       color = '#EFCE1E';
     } else if (arr.find(num => num >= 80)) {
       color = '#26AE60';
     }
     return color;
   };
-
 
   return (
     <ListPageContainer>
@@ -97,7 +93,6 @@ const Kvitto = () => {
             {getLowHallbarhet.map((vara) => (
               <p className='adjustText'><span className='itemName'>{vara.name} </span><Arrow /><span className='newItemName'>{vara.ecoAlt}</span></p>
             ))}
-
           </AdjustmentsContainer>
           <NumSumContainer>
             <h3 className='statistikHeader'>statistik:</h3>
