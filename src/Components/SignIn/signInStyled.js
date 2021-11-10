@@ -5,16 +5,16 @@ import { FcGoogle } from 'react-icons/fc';
 export const SignInContainer = styled.div`
 text-align: center;
 background: url(${natureBg}) no-repeat;
-background-size: 500px;
+background-size: 90%;
 background-position: center bottom;
 height: 100vh;
 background-color: #EAEAEA;
 h3 {
   text-transform: uppercase;
   margin: 0;
-  padding-top: 100px;
+  padding-top: 60px;
   font-weight: 900;
-  font-size: 20px;
+  font-size: 25px;
   color: #3E3E3E;
 }
 `
@@ -24,6 +24,7 @@ border-radius: 10px;
 margin:50px auto;
 padding: 20px 5px;
 width: 80%;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 h5 {
   font-weight: 200;
   font-size: 14px;

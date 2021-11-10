@@ -46,11 +46,11 @@ padding: 10px;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 `
 export const TopContainer = styled.div`
-padding-top: 20px;
+padding-top: 7px;
 border-bottom: 3px solid lightgray;
 .largeHeading {
   text-align: center;
-  font-size: 22px;
+  font-size: 20px;
 }
 .feedbackText {
 padding: 0 15px;

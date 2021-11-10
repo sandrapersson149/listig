@@ -55,12 +55,12 @@ h5 {
   margin: 50px;
 }
 button {
-  position: fixed;
-  width: 325px;
+  width: 90%;
+  margin: 10px;
   padding: 10px;
   border-radius: 10px;
   border: 1px solid black;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   bottom: 30px;
 }
 `
@@ -129,6 +129,7 @@ top: 7px;
 left: 10px;
 width: 20px;
 height: 20px;
+padding-right: 13px;
 `
 export const CheckedIcon = styled(FiCheckCircle)`
 position: relative;
@@ -137,7 +138,7 @@ top: 7px;
 left: 10px;
 width: 20px;
 height: 20px;
-
+padding-right: 13px;
 `
 export const BtnContainer = styled.div`
 display: flex;
@@ -172,10 +173,10 @@ display: flex;
 flex-direction: column;
 padding-bottom: 10px;
 h3 {
-  padding: 0 10px;
+  padding: 0 7px;
   padding-left: 40px;
   margin:5px 0;
-  font-size: 17px;
+  font-size: 14px;
   font-weight: 300;
   text-align: left;
   height: 20px;

@@ -9,7 +9,7 @@ display: flex;
 flex-direction: column;
 height: 100vh;
 background: url(${FlowerHands}) no-repeat;
-background-size: 350px;
+background-size: 90%;
 background-position: left bottom;
 `
 export const AvatarWrapper = styled.div`
@@ -75,14 +75,14 @@ bottom: 30px;
 export const NewListButton = styled.button`
 display: flex;
 justify-content: space-evenly;
-width: 350px;
+width: 90%;
 margin: auto;
-padding: 10px;
+padding: 5px;
 border: 1px solid #000000;
 box-sizing: border-box;
 border-radius: 10px;
 font-weight: 500;
-font-size: 17px;
+font-size: 15px;
 letter-spacing: 0.06em;
 a {
  text-decoration: none; 
@@ -90,7 +90,7 @@ a {
 }
 `
 export const AddIcon = styled(AiOutlinePlus)`
-width: 20px;
-height: 20px;
+width: 15px;
+height: 15px;
 padding-left: 20px;
 `

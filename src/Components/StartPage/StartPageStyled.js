@@ -5,7 +5,7 @@ import { FcGoogle } from 'react-icons/fc';
 export const StartPageContainer = styled.div`
 text-align: center;
 background: url(${natureBg}) no-repeat;
-background-size: 500px;
+background-size: 100%;
 background-position: center bottom;
 height: 100vh;
 background-color: #EAEAEA;
@@ -20,9 +20,10 @@ h3 {
 export const BtnContainer = styled.div`
 background: #F7F7F7;
 border-radius: 10px;
-margin: 50px auto;
+margin: 40px auto;
 padding: 20px 5px;
 width: 80%;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 h4 {
   margin-bottom: 0;
   font-weight: 800;
@@ -47,16 +48,14 @@ font-weight: 200;
 text-transform: uppercase;
 color: #3E3E3E;
 margin: 0;
-padding-top: 100px;
+padding-top: 40px;
 `
 export const CreateAccBtn = styled.button`
 background-color: #E6E6E6;
 border-radius: 10px;
 border: none;
-padding: 10px;
+padding: 10px 30px;
 margin: 20px;
-width: 230px;
-height: 50px;
 font-weight: 900;
 text-transform: uppercase;
 font-size: 14px;

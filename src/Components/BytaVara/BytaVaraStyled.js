@@ -64,7 +64,7 @@ h4 {
   padding: 0 10px;
 }
 p{
-  width: 50%;
+  width: 70%;
 }
 .checkboxContainer {
   height: 20px;
@@ -87,34 +87,35 @@ height: 25px;
 export const ProcentContainer = styled.div`
 background-color: #26AE60;
 border-radius: 100%;
-width: 90px;
-height: 90px;
+width: 70px;
+height: 70px;
 margin:0 auto 15px auto;
 h4{
 margin: 0;
 padding-top: 10px;
 text-align: center;
 font-weight: 300;
-font-size: 28px;
+font-size: 20px;
 color: #fff;
 }
 span{
-  font-size: 13px;
+  font-size: 10px;
   padding-left: 2px;
 }
 h5 {
 margin: 0;
 text-align: center;
-font-size: 13px;
+font-size: 10px;
 font-weight: 300;
 color: #fff;
 text-transform: capitalize;
 }
 `
 export const BtnWrapper = styled.div`
-margin-top: 40px;
+width: 90%;
+margin: 10px auto;
 button {
-width: 280px;
+width: 100%;
 height: 45px;
 padding: 10px;
 color: #fff;
@@ -123,13 +124,13 @@ box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 6px;
 border: none;
 font-weight: 900;
-font-size: 14px;
+font-size: 12px;
 text-transform: uppercase;
 }
 `
 export const ImgWrapper = styled.div`
 img {
   margin-top: 30px;
-  width: 300px;
+  width: 70%;
 }
 `

@@ -38,7 +38,6 @@ export const HeadWrapper = styled.div`
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-top: 30px;
 h1{
   font-size: 32px;
   font-weight: 800;
@@ -46,33 +45,33 @@ h1{
   color: #353535;
 }
 p {
-  font-size: 16px;
+  font-size: 14px;
   text-align: center;
   line-height: 128.19%;
-  margin: 5px 20px;
+  margin: 0 20px;
 }
 `
 export const KlimatWrapper = styled.div`
 margin: 30px;
 border-radius: 100%;
-width: 100px;
-height: 100px;
+width: 70px;
+height: 70px;
 h4{
 margin: 0;
 padding-top: 10px;
 text-align: center;
 font-weight: 200;
-font-size: 36px;
+font-size: 20px;
 color: #fff;
 }
 span{
-  font-size:15px;
-  padding-left: 2px;
+font-size: 12px;
+padding-left: 2px;
 }
 h5 {
 margin: 0;
 text-align: center;
-font-size: 15px;
+font-size: 12px;
 font-weight: 200;
 color: #fff;
 text-transform: capitalize;
@@ -108,17 +107,16 @@ margin-bottom: 20px;
 `
 export const BtnWrapper = styled.div`
 button {
-width: 280px;
-height: 45px;
-padding: 10px;
+margin: 10px auto;
+padding: 10px 15px;
 color: #F9F9F9;
 text-decoration: none;
-background: #252525;
+background-color: #252525;
 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 border-radius: 6px;
 border: none;
 font-weight: 900;
-font-size: 14px;
+font-size: 12px;
 text-transform: uppercase;
 }
 `
