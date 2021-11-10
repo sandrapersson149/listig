@@ -41,6 +41,7 @@ const Kvitto = () => {
   const getH2o = listOfVaror.map(item => item.h2o)
   const sumOfGetH2o = getH2o.reduce((a, b) => a + b, 0)
 
+  // kollar efter varor som har bytts ut
   function getChangedItems(arr) {
     const changedItems = arr.filter(item => item.changedItem)
     return changedItems.length

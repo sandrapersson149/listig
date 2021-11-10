@@ -153,6 +153,7 @@ const List = ({ lists, setLists }) => {
       });
   }
 
+  // funktion för att hantera klick på kvittot. Skickar med infon till nästa sida
   const handleOpenKvitto = (id) => {
     const dataTransfer = listOfVaror
     history.push
@@ -166,6 +167,8 @@ const List = ({ lists, setLists }) => {
 
   }
 
+  // sätter färg efter att en vara har bytts ut
+  // I prototypen var kanten grön efter man bytt ut en vara. Nu blir texten grön istället
   const greenForChange = (vara) => {
     let border;
     if (vara.changedItem === true) {
@@ -176,6 +179,7 @@ const List = ({ lists, setLists }) => {
     return border;
   }
 
+  // funktion med if statment för att antingen visa listan eller om tom bara en text 
   const renderVarorToList = () => {
     if (listOfVaror.length === 0) {
       return <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
