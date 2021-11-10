@@ -1,5 +1,6 @@
 # Listig - Klimatsmarta inköpslistor 
 Listig är en handlingsapp för den som vill göra mer hållbara val. Genom att se på handlingslistan vilka varor som kan bytas ut mot mer hållbara kan man sänka sig miljöpåverkan. Tanken är att användaren ska lära sig handla mer hållbart och alltid göra mer hållbara val i sin handling. 
+I mappen UX finns en pdf med alla vyer från prototypen.
 > Skapat av mig - Sandra Persson
 
 ## Funktioner
