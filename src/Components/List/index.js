@@ -182,12 +182,14 @@ const List = ({ lists, setLists }) => {
   // funktion med if statment för att antingen visa listan eller om tom bara en text 
   const renderVarorToList = () => {
     if (listOfVaror.length === 0) {
-      return <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
+      return <li key={'5423'}>
+        <h5>Kom igång med handlingslistan genom att klicka på knappen nedan<p>Listan är tom</p></h5>
+      </li>
     }
     else {
-      return listOfVaror.map((vara, index) => (
+      return listOfVaror.map((vara) => (
         <LiWrapper style={{ color: greenForChange(vara) }}>
-          <ItemsInList key={index} >
+          <ItemsInList key={vara.id} >
             <span onClick={() => completeListItem(vara.id)}>
               {checked === vara.id ?
                 <CheckedIcon />
@@ -195,7 +197,7 @@ const List = ({ lists, setLists }) => {
                 <UncheckedIcon />
               }
             </span>
-            <h4 onClick={() => handleExpandedItem(vara.id)} className={checked === vara.id ? 'complete' : 'listItem'}>{vara.name}</h4>
+            <h4 key={vara.id} onClick={() => handleExpandedItem(vara.id)} className={checked === vara.id ? 'complete' : 'listItem'}>{vara.name}</h4>
             <BtnContainer>
               <PlusMinusContainer>
                 <MinusIcon />1<PlusIcon />
@@ -227,8 +229,8 @@ const List = ({ lists, setLists }) => {
             <div>
               <SearchInput placeholder='sök efter vara' onChange={handleFilter} />
               {filterdItems.length !== 0 && (
-                filterdItems.map((item, index) => (
-                  <SearchResultContainer className={item.id} key={index} onClick={() => addItemToList(item)}>
+                filterdItems.map((item) => (
+                  <SearchResultContainer className={item.id} key={item.id} onClick={() => addItemToList(item)}>
                     <p>{item.name}</p>
                   </SearchResultContainer>
                 )))}

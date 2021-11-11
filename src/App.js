@@ -34,11 +34,7 @@ function App() {
   const [input, setInput] = useState('')
   const [lists, setLists] = useState(JSON.parse(localStorage.getItem("Lists")) || []);
 
-  const demo = {
-    title: 'Mat till helgen',
-    id: Date.now(),
-    varor: getFoodName(FoodData),
-  }
+
 
   function getFoodName(arr) {
     let foodItem = arr.map(item => item)
@@ -46,12 +42,18 @@ function App() {
   }
 
   useEffect(() => {
+
+    const demo = {
+      title: 'Mat till helgen',
+      id: Date.now(),
+      varor: getFoodName(FoodData),
+    }
     if (lists.find(list => list.title === 'Mat till helgen')) {
       console.log('found')
     } else {
       setLists(lists => [...lists, demo])
     }
-  }, [])
+  }, [lists])
 
   return (
     <div>
